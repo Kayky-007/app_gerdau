@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/components/espacamento_h.dart';
+import 'package:login_gerdau/views/components/espacamento_h.dart';
 
 class CincoEstrelas extends StatefulWidget {
   const CincoEstrelas({super.key});
