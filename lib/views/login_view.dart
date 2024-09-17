@@ -16,16 +16,16 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           'Login - Avaliação Refeitorio',
           style: TextStyle(
             color: Colors.white,
           ),
         ),
-        backgroundColor: const Color.fromRGBO(9, 68, 121, 1),
+        backgroundColor:  Color.fromRGBO(9, 68, 121, 1),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(20.0),
         child: Center(
           child: SingleChildScrollView(
             child: Card(
@@ -34,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               elevation: 5,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -43,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
                       width: 150,
                       height: 150,
                     ),
-                    const EspacamentoH(h: 10),
+                   EspacamentoH(h: 10),
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Chapa',
@@ -54,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                     ),
-                    const EspacamentoH(h: 17),
+                   EspacamentoH(h: 17),
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -66,17 +66,17 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                     ),
-                    const EspacamentoH(h: 10),
+                   EspacamentoH(h: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: const Text('Esqueci minha senha'),
+                          child: Text('Esqueci minha senha'),
                         ),
                         Row(
                           children: [
-                            const Text('Lembrar-me'),
+                           Text('Lembrar-me'),
                             Checkbox(
                               value: _rememberMe,
                               onChanged: (bool? value) {
@@ -89,7 +89,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ],
                     ),
-                    const EspacamentoH(h: 15),
+                   EspacamentoH(h: 15),
                     
                     ElevatedButton(
                       onPressed: () {
@@ -97,14 +97,14 @@ class _LoginViewState extends State<LoginView> {
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromRGBO(9, 68, 121, 1),
+                        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        padding: const EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                             vertical: 15, horizontal: 30),
                       ),
-                      child: const Text('Entrar'),
+                      child: Text('Entrar'),
                     ),
                   ],
                 ),

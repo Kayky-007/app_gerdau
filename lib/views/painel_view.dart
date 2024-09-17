@@ -11,7 +11,7 @@ class PainelView extends StatefulWidget {
 class _PainelViewState extends State<PainelView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: BarraNavigacao()
     );
   }
