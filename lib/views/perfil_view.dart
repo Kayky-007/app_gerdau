@@ -14,7 +14,7 @@ class _PerfilViewState extends State<PerfilView> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Perfil'),
+        title: const Text('Perfil'),
         actions: [
           IconButton(
             icon: const Icon(Icons.edit),
@@ -38,7 +38,7 @@ class _PerfilViewState extends State<PerfilView> {
                     ),
                     elevation: 5,
                     child: Padding(
-                      padding: EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(children: [
                         ClipOval(
                           child: Image.asset(
@@ -48,13 +48,13 @@ class _PerfilViewState extends State<PerfilView> {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        EspacamentoH(h: 10),
+                        const EspacamentoH(h: 10),
                         const Text(
                           'Kayky da Silva Costa',
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                        EspacamentoH(h: 10),
+                        const EspacamentoH(h: 10),
                         const Text(
                           'kayky7costa@hotmail.com',
                           style: TextStyle(color: Colors.grey),
@@ -65,29 +65,29 @@ class _PerfilViewState extends State<PerfilView> {
                 ],
               ),
             ),
-            Divider(height: 40, thickness: 1),
-            EspacamentoH(h: 15),
-            ListTile(
-              leading: const Icon(Icons.work),
-              title: const Text('Cargo'),
-              subtitle: const Text('Encarregado Deposito'),
+            const Divider(height: 40, thickness: 1),
+            const EspacamentoH(h: 15),
+            const ListTile(
+              leading: Icon(Icons.work),
+              title: Text('Cargo'),
+              subtitle: Text('Encarregado Deposito'),
             ),
-            ListTile(
-              leading: const Icon(Icons.business),
-              title: const Text('Departamento'),
-              subtitle: const Text('Administrativo'),
+            const ListTile(
+              leading: Icon(Icons.business),
+              title: Text('Departamento'),
+              subtitle: Text('Administrativo'),
             ),
-            ListTile(
-              leading: const Icon(Icons.location_on),
-              title: const Text('Localização'),
-              subtitle: const Text('Pindamonhangaba - SP'),
+            const ListTile(
+              leading: Icon(Icons.location_on),
+              title: Text('Localização'),
+              subtitle: Text('Pindamonhangaba - SP'),
             ),
-            ListTile(
-              leading: const Icon(Icons.badge),
-              title: const Text('Chapa'),
-              subtitle: const Text('023211-0'),
+            const ListTile(
+              leading: Icon(Icons.badge),
+              title: Text('Chapa'),
+              subtitle: Text('023211-0'),
             ),
-            EspacamentoH(h: 23),
+            const EspacamentoH(h: 23),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -95,16 +95,16 @@ class _PerfilViewState extends State<PerfilView> {
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/');
                   },
-                  child: const Text('Sair'),
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Color.fromRGBO(121, 9, 9, 1),
+                    backgroundColor: const Color.fromRGBO(121, 9, 9, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                     padding: const EdgeInsets.symmetric(
                         vertical: 15, horizontal: 30),
                   ),
+                  child: const Text('Sair'),
                 ),
               ],
             )

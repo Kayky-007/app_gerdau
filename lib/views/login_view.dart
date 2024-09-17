@@ -22,7 +22,7 @@ class _LoginViewState extends State<LoginView> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
+        backgroundColor: const Color.fromRGBO(9, 68, 121, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -43,7 +43,7 @@ class _LoginViewState extends State<LoginView> {
                       width: 150,
                       height: 150,
                     ),
-                    EspacamentoH(h: 10),
+                    const EspacamentoH(h: 10),
                     TextField(
                       decoration: InputDecoration(
                         labelText: 'Chapa',
@@ -54,7 +54,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                     ),
-                    EspacamentoH(h: 17),
+                    const EspacamentoH(h: 17),
                     TextField(
                       obscureText: true,
                       decoration: InputDecoration(
@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ),
                     ),
-                    EspacamentoH(h: 10),
+                    const EspacamentoH(h: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -76,7 +76,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         Row(
                           children: [
-                            Text('Lembrar-me'),
+                            const Text('Lembrar-me'),
                             Checkbox(
                               value: _rememberMe,
                               onChanged: (bool? value) {
@@ -89,22 +89,22 @@ class _LoginViewState extends State<LoginView> {
                         ),
                       ],
                     ),
-                    EspacamentoH(h: 15),
+                    const EspacamentoH(h: 15),
                     
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/painel');
                       },
-                      child: const Text('Entrar'),
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
+                        backgroundColor: const Color.fromRGBO(9, 68, 121, 1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         padding: const EdgeInsets.symmetric(
                             vertical: 15, horizontal: 30),
                       ),
+                      child: const Text('Entrar'),
                     ),
                   ],
                 ),

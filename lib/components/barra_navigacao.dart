@@ -17,7 +17,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
     return Scaffold(
       body: IndexedStack(
         index: currentPageIndex,
-        children: [
+        children: const [
           Scaffold(
             body: InicioView(),
           ),
@@ -32,7 +32,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Color.fromRGBO(255, 204, 8, 1),
+        indicatorColor: const Color.fromRGBO(255, 204, 8, 1),
         selectedIndex: currentPageIndex,
         destinations: const <NavigationDestination>[
           NavigationDestination(
