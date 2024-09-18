@@ -13,9 +13,7 @@ class _InicioViewState extends State<InicioView> {
   Widget build(BuildContext context) {
     return const Scaffold(
         body:
-                CincoEstrelas(),
-               
-              
+           CincoEstrelas(),
         );
   }
 }

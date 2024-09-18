@@ -26,7 +26,7 @@ class _CincoEstrelasState extends State<CincoEstrelas> {
             'Avalie o Prato:',
             style: TextStyle(fontSize: 24),
           ),
-          EspacamentoH(h: 20),
+           EspacamentoH(h: 20),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(5, (index) {
@@ -40,10 +40,10 @@ class _CincoEstrelasState extends State<CincoEstrelas> {
               );
             }),
           ),
-          SizedBox(height: 20),
+           SizedBox(height: 20),
           Text(
             'Avaliação: $cliques',
-            style: TextStyle(fontSize: 20),
+            style:  TextStyle(fontSize: 20),
           ),
         ],
       ),
