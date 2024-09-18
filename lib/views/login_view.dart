@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                     
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/painel');
+                        Navigator.pushReplacementNamed(context, '/painel',);
                       },
                       child: const Text('Entrar'),
                       style: ElevatedButton.styleFrom(
