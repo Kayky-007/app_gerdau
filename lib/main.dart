@@ -10,6 +10,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
+      // cor do aplicativo
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          foregroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(1, 52, 91, 1)
+        )
+      ),
       
       routes: {
         '/': (context) => const LoginView(),
