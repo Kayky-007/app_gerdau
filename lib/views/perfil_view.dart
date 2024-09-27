@@ -93,7 +93,7 @@ class _PerfilViewState extends State<PerfilView> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/');
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                   child: const Text('Sair'),
                   style: ElevatedButton.styleFrom(
