@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/views/inicio_view.dart';
-import 'package:login_gerdau/views/perfil_view.dart';
+import 'package:login_gerdau/view/inicio_view.dart';
+import 'package:login_gerdau/view/perfil_view.dart';
 
 class BarraNavigacao extends StatefulWidget {
   const BarraNavigacao({super.key});
