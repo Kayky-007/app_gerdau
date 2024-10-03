@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/views/components/cinco_estralas.dart';
+import 'package:login_gerdau/view/components/cinco_estralas.dart';
 
 class InicioView extends StatefulWidget {
   const InicioView({super.key});

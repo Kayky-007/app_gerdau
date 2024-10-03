@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/views/components/espacamento_h.dart';
+import 'package:login_gerdau/view/components/espacamento_h.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({super.key});
