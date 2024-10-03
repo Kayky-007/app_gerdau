@@ -13,7 +13,7 @@ class _PainelViewState extends State<PainelView> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: BarraNavigacao()
+      body: Center(child: BarraNavigacao())
     );
   }
 }
