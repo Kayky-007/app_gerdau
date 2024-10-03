@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/views/cardapio_view.dart';
 import 'package:login_gerdau/views/inicio_view.dart';
 import 'package:login_gerdau/views/perfil_view.dart';
 
@@ -10,7 +11,7 @@ class BarraNavigacao extends StatefulWidget {
 }
 
 class _BarraNavigacaoState extends State<BarraNavigacao> {
-  int currentPageIndex = 0; 
+  int currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,9 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
         children: [
           Scaffold(
             body: InicioView(),
+          ),
+          Scaffold(
+            body: CardapioView(),
           ),
           Scaffold(
             body: PerfilView(),
@@ -40,9 +44,13 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             label: 'Inicio',
             selectedIcon: Icon(Icons.home),
           ),
-         
           NavigationDestination(
-            icon:  Icon(Icons.person),
+            icon: Icon(Icons.fastfood_outlined),
+            label: 'Cardápio',
+            selectedIcon: Icon(Icons.fastfood_rounded),
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person),
             label: 'Perfil',
           ),
         ],
