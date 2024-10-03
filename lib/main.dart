@@ -39,3 +39,24 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+class Teste extends StatelessWidget {
+  const Teste({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
