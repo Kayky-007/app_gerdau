@@ -67,6 +67,9 @@ flutter:
   - assets/images/redondoPerfil.jpg
   - assets/images/logo_splashscreen.png
   - assets/images/prato_exemplo.jpg
+  - assets/images/gd1.jpg
+  - assets/images/gd2.jpg
+  - assets/images/gd3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
