@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/views/components/barra_navigacao.dart';
+import 'package:login_gerdau/view/components/barra_navigacao.dart';
 
 class PainelView extends StatefulWidget {
   const PainelView({super.key});
