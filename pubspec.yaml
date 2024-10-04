@@ -38,6 +38,7 @@ dependencies:
   animated_splash_screen: ^1.3.0
   page_transition: ^2.1.0
   rating: ^1.0.0-dev.1
+  background_app_bar: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
   - assets/images/gd1.jpg
   - assets/images/gd2.jpg
   - assets/images/gd3.jpg
+  - assets/images/gerdau1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
