@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/components/espacamento_h.dart';
+import 'package:login_gerdau/view/components/espacamento_h.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -93,7 +93,7 @@ class _LoginViewState extends State<LoginView> {
                     
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/painel');
+                        Navigator.pushReplacementNamed(context, '/painel',);
                       },
                       style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,

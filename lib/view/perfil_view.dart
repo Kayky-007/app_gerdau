@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/components/espacamento_h.dart';
+import 'package:login_gerdau/view/components/espacamento_h.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({super.key});
@@ -93,7 +93,7 @@ class _PerfilViewState extends State<PerfilView> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/');
+                    Navigator.pushReplacementNamed(context, '/login');
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,

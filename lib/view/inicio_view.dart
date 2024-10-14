@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/components/cinco_estralas.dart';
+import 'package:login_gerdau/view/components/cinco_estralas.dart';
 
 class InicioView extends StatefulWidget {
   const InicioView({super.key});
@@ -11,6 +11,7 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   @override
   Widget build(BuildContext context) {
+
     return const Scaffold(
         body:
            CincoEstrelas(),
