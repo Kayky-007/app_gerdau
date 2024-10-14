@@ -44,7 +44,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
         },
         indicatorColor: Color.fromRGBO(255, 204, 8, 1),
         selectedIndex: currentPageIndex,
-        destinations: const <NavigationDestination>[
+        destinations: <NavigationDestination>[
           NavigationDestination(
             icon: Icon(Icons.home_outlined),
             label: 'Inicio',

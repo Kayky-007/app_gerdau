@@ -20,15 +20,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      // cor do aplicativo
+      //cores do app
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarTheme(
           foregroundColor: Colors.white,
           backgroundColor: Color.fromRGBO(1, 52, 91, 1)
         )
+
       ),
-      
       routes: {
         // Splash Screen iniciando a aplicação e redirecionando para a tela de login
         '/': (context) => AnimatedSplashScreen(
