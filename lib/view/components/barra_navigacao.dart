@@ -86,7 +86,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               label: 'Perfil',
             ),
           ],
-        ),
+        ),    
       ),
     );
   }

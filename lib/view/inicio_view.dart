@@ -11,9 +11,10 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CincoEstrelas(),
-              
-    );
+
+    return const Scaffold(
+        body:
+           CincoEstrelas(),
+        );
   }
 }
