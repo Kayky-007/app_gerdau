@@ -28,6 +28,7 @@ class _CardapioViewState extends State<CardapioView> {
           ),
         ),
       ],
-    ));
+    )
+    );
   }
 }
