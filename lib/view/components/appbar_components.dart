@@ -36,7 +36,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           ),
         ),
       ],
-      expandedHeight: 130.0,
+      expandedHeight: 100.0,
       floating: false,
       pinned: true,
       snap: false,
@@ -47,7 +47,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           title,
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 25,
+            fontSize: 20,
             color: const Color.fromRGBO(255, 204, 0, 1),
             shadows: [
               Shadow(
