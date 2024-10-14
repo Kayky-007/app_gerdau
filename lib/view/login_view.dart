@@ -16,10 +16,12 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
-          'Login - Avaliação Refeitorio',
-          style: TextStyle(
-            color: Colors.white,
+        title: Center(
+          child: const Text(
+            'Login - Avaliação Refeitorio',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
         backgroundColor:  Color.fromRGBO(9, 68, 121, 1),
@@ -39,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/logo_gerdau.png',
+                      'assets/images/teste.png',
                       width: 150,
                       height: 150,
                     ),

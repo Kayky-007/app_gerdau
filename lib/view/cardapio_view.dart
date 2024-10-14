@@ -11,6 +11,9 @@ class _CardapioViewState extends State<CardapioView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Center(child: Text("Cardápio")),
+        ),
         body: Column(
       children: [
         SizedBox(height: 100),
