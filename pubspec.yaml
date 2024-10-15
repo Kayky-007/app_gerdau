@@ -77,6 +77,8 @@ flutter:
   - assets/images/gerdau1.jpg
   - assets/images/logo_gerdau.png
   - assets/images/teste.png
+  - assets/images/logo_fundo3.jpg
+  - assets/images/logo_gerdau_login.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
