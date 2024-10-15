@@ -32,17 +32,15 @@ class _CardapioViewState extends State<CardapioView> {
                   });
                 },
                 children: [
+                  Image.asset('assets/images/gd1.jpg', fit: BoxFit.cover),
                   Image.asset('assets/images/ReceitAço.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/salada.jpeg', fit: BoxFit.cover),
-                  Image.asset('assets/images/dia-a-dia.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/especiale.jpg', fit: BoxFit.cover),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
+              children: List.generate(2, (index) {
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
