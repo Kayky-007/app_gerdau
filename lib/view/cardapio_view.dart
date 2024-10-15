@@ -1,124 +1,216 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/cardapio_controller.dart';
 
-import 'package:login_gerdau/view/components/espacamento_h.dart';
-
 class CardapioView extends StatefulWidget {
   const CardapioView({super.key});
 
   @override
-  State<CardapioView> createState() => _LoginViewState();
+  State<CardapioView> createState() => _CardapioViewState();
 }
 
-class _LoginViewState extends State<CardapioView> {
-  bool _rememberMe = false;
-
+class _CardapioViewState extends State<CardapioView> {
+  PageController arrastar = PageController();
   CardapioController _controller = CardapioController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: const Text(
-            'Login - Avaliação Refeitorio',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
+        title: const Text('Cardápio'),
+        centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              elevation: 5,
-              child: Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/teste.png',
-                      width: 150,
-                      height: 150,
-                    ),
-                    EspacamentoH(h: 10),
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Chapa',
-                        prefixIcon:
-                            Icon(Icons.badge, color: Colors.blueGrey[800]),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                    EspacamentoH(h: 17),
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        labelText: 'Senha',
-                        prefixIcon:
-                            Icon(Icons.lock, color: Colors.blueGrey[800]),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                    ),
-                    EspacamentoH(h: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: Text('Esqueci minha senha'),
-                        ),
-                        Row(
-                          children: [
-                            Text('Lembrar-me'),
-                            Checkbox(
-                              value: _rememberMe,
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  _rememberMe = value!;
-                                });
-                              },
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    EspacamentoH(h: 15),
-                    EspacamentoH(h: 15),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/painel');
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-                      ),
-                      child: Text('Entrar'),
-                    ),
-                  ],
-                ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 230,
+              child: PageView(
+                controller: arrastar,
+                onPageChanged: (int index) {
+                  setState(() {
+                    _controller.cont_pagina = index;
+                  });
+                },
+                children: [
+                  Image.asset('assets/images/ReceitAço.jpg', fit: BoxFit.cover),
+                  Image.asset('assets/images/salada.jpeg', fit: BoxFit.cover),
+                  Image.asset('assets/images/dia-a-dia.jpg', fit: BoxFit.cover),
+                  Image.asset('assets/images/especiale.jpg', fit: BoxFit.cover),
+                ],
               ),
             ),
-          ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(4, (index) {
+                return AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  margin: const EdgeInsets.symmetric(horizontal: 4),
+                  height: 10,
+                  width: _controller.cont_pagina == index ? 20 : 10,
+                  decoration: BoxDecoration(
+                    color:  _controller.cont_pagina == index ? Colors.blue : Colors.grey,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                );
+              }),
+            ),
+            const SizedBox(height: 20),
+           const Card(
+              elevation: 5,
+              color: const Color.fromRGBO(1, 52, 93, 1), 
+              child: const Row(
+                children: [
+                  const Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Escolha do dia',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(221, 255, 255, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Prato principal: Frango Grelhado',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Acompanhamento: Arroz, Feijão e Salada',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Sobremesa: Pudim de Leite',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Escolha do dia',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(221, 255, 255, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Prato principal: Frango Grelhado',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Acompanhamento: Arroz, Feijão e Salada',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Sobremesa: Pudim de Leite',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Divider(height: 40, thickness: 2),
+            const Card(
+              elevation: 5,
+              color: const Color.fromRGBO(1, 52, 93, 1), 
+              child: const Row(
+                children: [
+                  const Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Escolha do dia',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(221, 255, 255, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Prato principal: Frango Grelhado',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Acompanhamento: Arroz, Feijão e Salada',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Sobremesa: Pudim de Leite',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Escolha do dia',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(221, 255, 255, 255),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            'Prato principal: Frango Grelhado',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Acompanhamento: Arroz, Feijão e Salada',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'Sobremesa: Pudim de Leite',
+                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 }
-
-
