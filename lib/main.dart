@@ -4,6 +4,7 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 
 import 'package:login_gerdau/view/login_view.dart';
 import 'package:login_gerdau/view/painel_view.dart';
+import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:page_transition/page_transition.dart';
 
 void main() => runApp(const MyApp());
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/painel': (context) => const PainelView(),
         '/login': (context) => const LoginView(),
         '/cardapio': (context) => const CardapioView(),
+        '/pedidos': (context) => const PedidosView(),
       },
       initialRoute: '/',
     );

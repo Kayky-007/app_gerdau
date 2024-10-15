@@ -66,7 +66,16 @@ class _PerfilViewState extends State<PerfilView> {
               ),
             ),
             const Divider(height: 40, thickness: 1),
-            const EspacamentoH(h: 15),
+            ListTile(
+              leading: const Icon(Icons.shopping_cart,
+                  color: Color.fromARGB(255, 85, 95, 112)),
+              title: const Text('Meus Pedidos'),
+              trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+              onTap: () {
+                Navigator.pushReplacementNamed(context, '/pedidos');
+              },
+            ),
+            const Divider(height: 40, thickness: 1),
             const ListTile(
               leading: Icon(Icons.work),
               title: Text('Cargo'),
