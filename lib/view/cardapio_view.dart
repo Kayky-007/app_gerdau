@@ -1,34 +1,124 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/controller/cardapio_controller.dart';
+
+import 'package:login_gerdau/view/components/espacamento_h.dart';
 
 class CardapioView extends StatefulWidget {
   const CardapioView({super.key});
 
   @override
-  State<CardapioView> createState() => _CardapioViewState();
+  State<CardapioView> createState() => _LoginViewState();
 }
 
-class _CardapioViewState extends State<CardapioView> {
+class _LoginViewState extends State<CardapioView> {
+  bool _rememberMe = false;
+
+  CardapioController _controller = CardapioController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Center(child: Text("Cardápio")),
-        ),
-        body: Column(
-      children: [
-        SizedBox(height: 100),
-        SizedBox(
-          height: 230,
-          child: PageView(
-            children: [
-              Image.asset('assets/images/gd1.jpg', fit: BoxFit.cover),
-              Image.asset('assets/images/gd2.jpg', fit: BoxFit.cover),
-              Image.asset('assets/images/gd3.jpg', fit: BoxFit.cover),
-            ],
+      appBar: AppBar(
+        title: Center(
+          child: const Text(
+            'Login - Avaliação Refeitorio',
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
-      ],
-    )
+        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              elevation: 5,
+              child: Padding(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/teste.png',
+                      width: 150,
+                      height: 150,
+                    ),
+                    EspacamentoH(h: 10),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Chapa',
+                        prefixIcon:
+                            Icon(Icons.badge, color: Colors.blueGrey[800]),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    EspacamentoH(h: 17),
+                    TextField(
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        labelText: 'Senha',
+                        prefixIcon:
+                            Icon(Icons.lock, color: Colors.blueGrey[800]),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    EspacamentoH(h: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: Text('Esqueci minha senha'),
+                        ),
+                        Row(
+                          children: [
+                            Text('Lembrar-me'),
+                            Checkbox(
+                              value: _rememberMe,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  _rememberMe = value!;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    EspacamentoH(h: 15),
+                    EspacamentoH(h: 15),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/painel');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+                      ),
+                      child: Text('Entrar'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
+
+
