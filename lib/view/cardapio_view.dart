@@ -32,10 +32,8 @@ class _CardapioViewState extends State<CardapioView> {
                   });
                 },
                 children: [
+                  Image.asset('assets/images/gd1.jpg', fit: BoxFit.cover),
                   Image.asset('assets/images/ReceitAço.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/salada.jpeg', fit: BoxFit.cover),
-                  Image.asset('assets/images/dia-a-dia.jpg', fit: BoxFit.cover),
-                  Image.asset('assets/images/especiale.jpg', fit: BoxFit.cover),
                 ],
               ),
             ),
