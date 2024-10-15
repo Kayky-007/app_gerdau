@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/cardapio_controller.dart';
+import 'package:login_gerdau/view/components/appbar_components.dart';
 
 class CardapioView extends StatefulWidget {
   const CardapioView({super.key});
@@ -14,14 +15,14 @@ class _CardapioViewState extends State<CardapioView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cardápio'),
-        centerTitle: true,
-      ),
+        body: NestedScrollView(
+      headerSliverBuilder: (context, innerBoxScrolled) => [
+        AppbarfotoComponents(title: 'Cardápio'),
+      ],
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20),
+            //const SizedBox(height: 20),
             SizedBox(
               height: 230,
               child: PageView(
@@ -47,16 +48,18 @@ class _CardapioViewState extends State<CardapioView> {
                   height: 10,
                   width: _controller.cont_pagina == index ? 20 : 10,
                   decoration: BoxDecoration(
-                    color:  _controller.cont_pagina == index ? Colors.blue : Colors.grey,
+                    color: _controller.cont_pagina == index
+                        ? Colors.blue
+                        : Colors.grey,
                     borderRadius: BorderRadius.circular(12),
                   ),
                 );
               }),
             ),
             const SizedBox(height: 20),
-           const Card(
+            const Card(
               elevation: 5,
-              color: const Color.fromRGBO(1, 52, 93, 1), 
+              color: const Color.fromRGBO(1, 52, 93, 1),
               child: const Row(
                 children: [
                   const Expanded(
@@ -76,17 +79,23 @@ class _CardapioViewState extends State<CardapioView> {
                           const SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                         ],
                       ),
@@ -109,17 +118,23 @@ class _CardapioViewState extends State<CardapioView> {
                           const SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                         ],
                       ),
@@ -134,7 +149,7 @@ class _CardapioViewState extends State<CardapioView> {
             Divider(height: 40, thickness: 2),
             const Card(
               elevation: 5,
-              color: const Color.fromRGBO(1, 52, 93, 1), 
+              color: const Color.fromRGBO(1, 52, 93, 1),
               child: const Row(
                 children: [
                   const Expanded(
@@ -154,17 +169,23 @@ class _CardapioViewState extends State<CardapioView> {
                           const SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                         ],
                       ),
@@ -187,17 +208,23 @@ class _CardapioViewState extends State<CardapioView> {
                           const SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
-                            style: TextStyle(fontSize: 18, color: Color.fromARGB(137, 255, 255, 255)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromARGB(137, 255, 255, 255)),
                           ),
                         ],
                       ),
@@ -209,6 +236,6 @@ class _CardapioViewState extends State<CardapioView> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
