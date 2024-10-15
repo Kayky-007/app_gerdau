@@ -40,7 +40,7 @@ class _CardapioViewState extends State<CardapioView> {
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(4, (index) {
+              children: List.generate(2, (index) {
                 return AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
