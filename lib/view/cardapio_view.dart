@@ -22,7 +22,6 @@ class _CardapioViewState extends State<CardapioView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            //const SizedBox(height: 20),
             SizedBox(
               height: 230,
               child: PageView(
@@ -57,14 +56,14 @@ class _CardapioViewState extends State<CardapioView> {
               }),
             ),
             const SizedBox(height: 20),
-            const Card(
-              elevation: 5,
-              color: const Color.fromRGBO(1, 52, 93, 1),
-              child: const Row(
-                children: [
-                  const Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+            Row(
+              children: [
+                Expanded(
+                  child: Card(
+                    elevation: 5,
+                    color: const Color.fromRGBO(1, 52, 93, 1),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -76,21 +75,21 @@ class _CardapioViewState extends State<CardapioView> {
                               color: Color.fromARGB(221, 255, 255, 255),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
                             style: TextStyle(
@@ -101,9 +100,14 @@ class _CardapioViewState extends State<CardapioView> {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                ),
+                SizedBox(width: 5), // Espaço entre os cards
+                Expanded(
+                  child: Card(
+                    elevation: 5,
+                    color: const Color.fromRGBO(1, 52, 93, 1),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -115,21 +119,21 @@ class _CardapioViewState extends State<CardapioView> {
                               color: Color.fromARGB(221, 255, 255, 255),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
                             style: TextStyle(
@@ -140,21 +144,18 @@ class _CardapioViewState extends State<CardapioView> {
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
+                ),
+              ],
             ),
             Divider(height: 40, thickness: 2),
-            const Card(
-              elevation: 5,
-              color: const Color.fromRGBO(1, 52, 93, 1),
-              child: const Row(
-                children: [
-                  const Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+            Row(
+              children: [
+                Expanded(
+                  child: Card(
+                    elevation: 5,
+                    color: const Color.fromRGBO(1, 52, 93, 1),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -166,21 +167,21 @@ class _CardapioViewState extends State<CardapioView> {
                               color: Color.fromARGB(221, 255, 255, 255),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
                             style: TextStyle(
@@ -191,9 +192,14 @@ class _CardapioViewState extends State<CardapioView> {
                       ),
                     ),
                   ),
-                  const Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                ),
+                SizedBox(width: 5), // Espaço entre os cards
+                Expanded(
+                  child: Card(
+                    elevation: 5,
+                    color: const Color.fromRGBO(1, 52, 93, 1),
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -205,21 +211,21 @@ class _CardapioViewState extends State<CardapioView> {
                               color: Color.fromARGB(221, 255, 255, 255),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          SizedBox(height: 10),
                           Text(
                             'Prato principal: Frango Grelhado',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Acompanhamento: Arroz, Feijão e Salada',
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Color.fromARGB(137, 255, 255, 255)),
                           ),
-                          const SizedBox(height: 5),
+                          SizedBox(height: 5),
                           Text(
                             'Sobremesa: Pudim de Leite',
                             style: TextStyle(
@@ -230,9 +236,10 @@ class _CardapioViewState extends State<CardapioView> {
                       ),
                     ),
                   ),
-                ],
-              ),
-            )
+                ),
+              ],
+            ),
+            SizedBox(height: 10)
           ],
         ),
       ),
