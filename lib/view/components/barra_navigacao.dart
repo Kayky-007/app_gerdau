@@ -6,6 +6,7 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 // import 'package:login_gerdau/views/perfil_view.dart';
 // =======
 import 'package:login_gerdau/view/inicio_view.dart';
+import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:login_gerdau/view/perfil_view.dart';
 // >>>>>>> 64ab53cb03f136cca7a9a7d267c2ba293bed69bd:lib/view/components/barra_navigacao.dart
 
@@ -30,6 +31,9 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
           ),
           Scaffold(
             body: CardapioView(),
+          ),
+          Scaffold(
+            body: PedidosView(),
           ),
           Scaffold(
             body: PerfilView(),
@@ -73,6 +77,17 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
                 Icons.fastfood_rounded,
                 color: Colors.white,
               ),
+            ),
+            NavigationDestination(
+              icon: Icon(
+                Icons.person_outline,
+                color: Colors.white,
+                ),
+                selectedIcon: Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                  ),
+              label: 'Pedidos',
             ),
             NavigationDestination(
               icon: Icon(
