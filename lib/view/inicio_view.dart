@@ -18,6 +18,7 @@ class _InicioViewState extends State<InicioView> {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxScrolled) => [
           AppbarfotoComponents(title: 'Cinco Estrelas'),
+          
         ],
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),

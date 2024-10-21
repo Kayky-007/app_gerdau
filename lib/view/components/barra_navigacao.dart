@@ -6,6 +6,7 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 // import 'package:login_gerdau/views/perfil_view.dart';
 // =======
 import 'package:login_gerdau/view/inicio_view.dart';
+import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:login_gerdau/view/perfil_view.dart';
 // >>>>>>> 64ab53cb03f136cca7a9a7d267c2ba293bed69bd:lib/view/components/barra_navigacao.dart
 
@@ -32,23 +33,26 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             body: CardapioView(),
           ),
           Scaffold(
+            body: PedidosView(),
+          ),
+          Scaffold(
             body: PerfilView(),
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBarTheme( // 'Envelopa' o Navigation Bar, foi usado pra trocar a cor do texto
+      bottomNavigationBar: NavigationBarTheme( 
         data: NavigationBarThemeData(
           labelTextStyle: WidgetStatePropertyAll(  
-            TextStyle(color: Colors.white)  // Deixa qualquer texto da navigation bar com a cor branca
+            TextStyle(color: Colors.white)  
           )
         ),
-        child: NavigationBar(  // Navigation Bar, ATENÇÃO, ta sendo usado o Navigation Bar aqui, não o BottomNavigationBar
+        child: NavigationBar(  
           onDestinationSelected: (int index) {
             setState(() {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Color.fromARGB(255, 1, 52, 96),
+         backgroundColor: Color.fromARGB(255, 1, 52, 96),
           indicatorColor: Color.fromRGBO(0, 74, 143, 1),
           selectedIndex: currentPageIndex,
           destinations: const <NavigationDestination>[
@@ -74,6 +78,13 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
                 color: Colors.white,
               ),
             ),
+              NavigationDestination(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
+              label: 'Pedidos',
+            ),
             NavigationDestination(
               icon: Icon(
                 Icons.person_outline,
@@ -83,8 +94,9 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
                   Icons.person,
                   color: Colors.white,
                   ),
-              label: 'Perfil',
+              label: 'Pefil',
             ),
+          
           ],
         ),    
       ),

@@ -40,6 +40,7 @@ class AppbarfotoComponents extends StatelessWidget  {
       floating: false,
       pinned: true,
       snap: false,
+      
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       flexibleSpace: BackgroundFlexibleSpaceBar(

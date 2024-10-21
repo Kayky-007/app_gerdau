@@ -17,6 +17,9 @@ class _CardapioViewState extends State<CardapioView> {
       appBar: AppBar(
         title: const Text('Cardápio'),
         centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
