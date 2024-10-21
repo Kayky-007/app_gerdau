@@ -41,6 +41,7 @@ dependencies:
   page_transition: ^2.1.0
   rating: ^1.0.0-dev.1
   background_app_bar: ^2.1.0
+  modal_bottom_sheet: ^3.0.0
 
 
 dev_dependencies:
