@@ -80,7 +80,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.person_outline,
+                Icons.shopping_cart_outlined,
                 color: Colors.white,
                 ),
                 selectedIcon: Icon(
