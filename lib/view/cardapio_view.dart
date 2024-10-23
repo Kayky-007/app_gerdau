@@ -14,7 +14,7 @@ class _CardapioViewState extends State<CardapioView> {
   PageController arrastar = PageController();
   CardapioController _controller = CardapioController();
 
-    void _alertPedido(BuildContext context) {
+  void _alertPedido(BuildContext context) {
     String? selectedSize;
 
     showMaterialModalBottomSheet(
@@ -192,40 +192,32 @@ class _CardapioViewState extends State<CardapioView> {
                     child: Card(
                       elevation: 5,
                       color: const Color.fromRGBO(1, 52, 93, 1),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              'Escolha do dia',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(221, 255, 255, 255),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Prato principal: Frango Grelhado',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Acompanhamento: Arroz, Feijão e Salada',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Sobremesa: Pudim de Leite',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
+                            Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Dia A Dia',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset('assets/images/comida_card.png',
+                                        width: 150),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -241,40 +233,33 @@ class _CardapioViewState extends State<CardapioView> {
                     child: Card(
                       elevation: 5,
                       color: const Color.fromRGBO(1, 52, 93, 1),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              'Escolha do dia',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(221, 255, 255, 255),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Prato principal: Frango Grelhado',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Acompanhamento: Arroz, Feijão e Salada',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Sobremesa: Pudim de Leite',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
+                            Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Clássico',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                        'assets/images/comida_card3.png',
+                                        width: 150),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -294,40 +279,33 @@ class _CardapioViewState extends State<CardapioView> {
                     child: Card(
                       elevation: 5,
                       color: const Color.fromRGBO(1, 52, 93, 1),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              'Escolha do dia',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(221, 255, 255, 255),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Prato principal: Frango Grelhado',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Acompanhamento: Arroz, Feijão e Salada',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Sobremesa: Pudim de Leite',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
+                            Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Especiale',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                        'assets/images/comida_card2.png',
+                                        width: 150),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
@@ -343,40 +321,33 @@ class _CardapioViewState extends State<CardapioView> {
                     child: Card(
                       elevation: 5,
                       color: const Color.fromRGBO(1, 52, 93, 1),
-                      child: const Padding(
-                        padding: EdgeInsets.all(16.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              'Escolha do dia',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(221, 255, 255, 255),
-                              ),
-                            ),
-                            SizedBox(height: 10),
-                            Text(
-                              'Prato principal: Frango Grelhado',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Acompanhamento: Arroz, Feijão e Salada',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              'Sobremesa: Pudim de Leite',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromARGB(137, 255, 255, 255)),
-                            ),
+                            Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      'Natural',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                        'assets/images/comida_card4.png',
+                                        width: 150),
+                                  ],
+                                ),
+                              ],
+                            )
                           ],
                         ),
                       ),
