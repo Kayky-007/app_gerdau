@@ -256,7 +256,6 @@ class _CardapioViewState extends State<CardapioView> {
                 ),
               ],
             ),
-            SizedBox(height: 10)
           ],
         ),
       ),
