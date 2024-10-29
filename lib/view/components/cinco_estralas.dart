@@ -23,7 +23,7 @@ class _CincoEstrelasState extends State<CincoEstrelas> {
     return Scaffold(
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxScrolled) => [
-          AppbarfotoComponents(title: 'Cinco Estrelas'),
+          AppbarfotoComponents(title: 'Inicio'),
         ],
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,

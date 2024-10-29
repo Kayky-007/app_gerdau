@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 
 class PerfilView extends StatefulWidget {
@@ -12,15 +13,10 @@ class _PerfilViewState extends State<PerfilView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
-        title: const Text('Perfil'),
-        backgroundColor: Color.fromARGB(255, 1, 52, 96),
-        centerTitle: true,
-        elevation: 10,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-        ),
-      ),
+       body: NestedScrollView(
+      headerSliverBuilder: (context, innerBoxScrolled) => [
+        AppbarfotoComponents(title: 'Perfil'),
+      ],
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -108,6 +104,6 @@ class _PerfilViewState extends State<PerfilView> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
