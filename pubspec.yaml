@@ -42,6 +42,7 @@ dependencies:
   rating: ^1.0.0-dev.1
   background_app_bar: ^2.1.0
   modal_bottom_sheet: ^3.0.0
+  flutter_dropdown_alert: ^1.0.7
 
 
 dev_dependencies:

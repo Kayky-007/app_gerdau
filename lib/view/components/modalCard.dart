@@ -1,5 +1,7 @@
 // alert_pedido_component.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ModalCard extends StatelessWidget {
@@ -73,7 +75,8 @@ class ModalCard extends StatelessWidget {
               ),
               filled: true,
               fillColor: Colors.white,
-              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             ),
             style: TextStyle(color: Colors.black, fontSize: 16),
             dropdownColor: Colors.white,
@@ -84,7 +87,7 @@ class ModalCard extends StatelessWidget {
                     ))
                 .toList(),
             onChanged: (value) {
-              selectedSize = value; 
+              selectedSize = value;
             },
           ),
           SizedBox(height: 20),
@@ -117,8 +120,13 @@ class ModalCard extends StatelessWidget {
                 child: Text("Confirmar"),
                 onPressed: () {
                   if (selectedSize != null) {
+                    print('Prato escolhido: $pratoPrincipal');
                     print('Tamanho escolhido: $selectedSize');
                   }
+                  AlertController.show(
+                      "Pedido Confirmado",
+                      "Seu pedido foi confirmado com sucesso!",
+                      TypeAlert.success);
                   Navigator.of(context).pop();
                 },
               ),
