@@ -14,79 +14,173 @@ class _PedidosViewState extends State<PedidosView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-       body: NestedScrollView(
-      headerSliverBuilder: (context, innerBoxScrolled) => [
-        AppbarfotoComponents(title: 'Pedidos'),
-      ],
-      body: Padding(
-        
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              clipBehavior: Clip.hardEdge,
-              elevation: 10,
-              shadowColor: Colors.black.withOpacity(0.5),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: InkWell(
-                splashColor: Colors.blue.withAlpha(50),
-                onTap: () {
-                  debugPrint(
-                      'Seu pedido é um frango frito com salada e de sobremesa pudim.');
-                },
-                child: Row(
-                  children: [
-                    Hero(
-                      tag: 'pedido-imagem',
-                      child: Image.network(
-                        'https://espetinhodesucesso.com/wp-content/uploads/2023/12/Receitas-de-frango-frito.jpg',
-                        width: 130,
-                        height: 215,
-                        fit: BoxFit.cover,
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxScrolled) => [
+          AppbarfotoComponents(title: 'Pedidos'),
+        ],
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Card(
+                  color: Color.fromARGB(255, 1, 52, 96),
+                  clipBehavior: Clip.hardEdge,
+                  elevation: 10,
+                  shadowColor: Colors.black.withOpacity(0.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Hero(
+                        tag: 'imagem do frangão',
+                        child: Image.network(
+                          'https://espetinhodesucesso.com/wp-content/uploads/2023/12/Receitas-de-frango-frito.jpg',
+                          width: double.infinity,
+                          height: 200,
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Padding(
+                      Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              'Frango Frito com Salada e Pudim',
+                              'Frango Frito',
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF34495E),
+                                color: Color.fromRGBO(255, 204, 0, 1),
                               ),
                             ),
-                            const SizedBox(height: 8),
+                            EspacamentoH(h: 8),
                             const Text(
-                              'Delicioso frango frito acompanhado de salada e pudim de sobremesa.',
+                              'Delicioso frango frito acompanhado com salada ',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Color(0xFF7F8C8D),
+                                color: Color.fromARGB(255, 255, 255, 255),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            EspacamentoH(h: 16),
+                            Divider(height: 2,),
+                            EspacamentoH(h: 8),
+
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Text('Buffet:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(255, 204, 0, 1),
+                                    )),
+                                Text(
+                                  'Dia a Dia',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            EspacamentoH(h: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Tamanho:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(255, 204, 0, 1),
+                                    )),
+                                Text(
+                                  'Médio',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            EspacamentoH(h: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Horário do Pedido:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(255, 204, 0, 1),
+                                    )),
+                                Text(
+                                  '12:30 PM',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            EspacamentoH(h: 8),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Estimativa de Pronto:',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO(255, 204, 0, 1),
+                                    )),
+                                Text(
+                                  '13:00 PM',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ],
+                            ),
+                            EspacamentoH(h: 8),
+                            Divider(height: 2,),
+                            EspacamentoH(h: 8),
+                            // Ingredientes
+                            Text(
+                              'Ingredientes:',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(255, 204, 0, 1),
+                              ),
+                            ),
+                            EspacamentoH(h: 8),
+                            Text(
+                              '- Frango',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+                            Text(
+                              '- Salada',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+                            Text(
+                              '- Arroz Branco',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+                            Text(
+                              '- Feijão',
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                            ),
+
+                            EspacamentoH(h: 8),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                                 ElevatedButton.icon(
-                                  onPressed: () {
-                                    print('Excluir pedido');
-                                  },
-                                  icon:  Icon(Icons.delete),
-                                  label: Text('Excluir'),
+                                  onPressed: () {},
+                                  icon: Icon(Icons.cancel),
+                                  label: Text('Cancelar Pedido'),
                                   style: ElevatedButton.styleFrom(
-                                    foregroundColor: const Color.fromARGB(255, 168, 14, 14),
-                                    
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: Colors.redAccent,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    padding:  EdgeInsets.symmetric(
+                                    padding: EdgeInsets.symmetric(
                                       vertical: 10,
                                       horizontal: 20,
                                     ),
@@ -97,16 +191,15 @@ class _PedidosViewState extends State<PedidosView> {
                           ],
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                EspacamentoH(h: 20),
+              ],
             ),
-            const EspacamentoH(h: 20),
-            
-          ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
