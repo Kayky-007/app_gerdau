@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 
@@ -66,7 +68,9 @@ class _PedidosViewState extends State<PedidosView> {
                               ),
                             ),
                             EspacamentoH(h: 16),
-                            Divider(height: 2,),
+                            Divider(
+                              height: 2,
+                            ),
                             EspacamentoH(h: 8),
 
                             Row(
@@ -129,7 +133,9 @@ class _PedidosViewState extends State<PedidosView> {
                               ],
                             ),
                             EspacamentoH(h: 8),
-                            Divider(height: 2,),
+                            Divider(
+                              height: 2,
+                            ),
                             EspacamentoH(h: 8),
                             // Ingredientes
                             Text(
@@ -171,7 +177,12 @@ class _PedidosViewState extends State<PedidosView> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ElevatedButton.icon(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    AlertController.show(
+                                        "Pedido Cancelado",
+                                        "Seu pedido foi cancelado!",
+                                        TypeAlert.error);
+                                  },
                                   icon: Icon(Icons.cancel),
                                   label: Text('Cancelar Pedido'),
                                   style: ElevatedButton.styleFrom(
