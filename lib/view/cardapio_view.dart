@@ -57,7 +57,7 @@ class _CardapioViewState extends State<CardapioView> {
                 );
               }),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Expanded(
@@ -73,7 +73,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: const Color.fromRGBO(1, 52, 93, 1),
+                      color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -120,7 +120,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: const Color.fromRGBO(1, 52, 93, 1),
+                      color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -156,7 +156,7 @@ class _CardapioViewState extends State<CardapioView> {
                 ),
               ],
             ),
-            Divider(height: 40, thickness: 2),
+            Divider(height: 30, thickness: 2),
             Row(
               children: [
                 Expanded(
@@ -172,7 +172,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: const Color.fromRGBO(1, 52, 93, 1),
+                      color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -213,14 +213,14 @@ class _CardapioViewState extends State<CardapioView> {
                       ModalCard.showModalCard(
                         context: context,
                         pratoPrincipal: 'Frango grelhado com ervas',
-                        acompanhamento: 'Legumes salteados (brócolos, cenoura e batata) e arroz integral',
+                        acompanhamento: 'Legumes salteados e arroz integral',
                         sobremesa: 'Salada de frutas frescas',
                         imagemPath: 'assets/images/comida_card4.png',
                       );
                     },
                     child: Card(
                       elevation: 5,
-                      color: const Color.fromRGBO(1, 52, 93, 1),
+                      color: Colors.black,
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(

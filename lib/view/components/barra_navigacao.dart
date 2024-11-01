@@ -43,7 +43,8 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
       bottomNavigationBar: NavigationBarTheme( // 'Envelopa' o Navigation Bar, foi usado pra trocar a cor do texto
         data: NavigationBarThemeData(
           labelTextStyle: WidgetStatePropertyAll(  
-            TextStyle(color: Colors.white)  // Deixa qualquer texto da navigation bar com a cor branca
+            TextStyle(color: Colors.white,
+            fontWeight: FontWeight.bold)  // Deixa qualquer texto da navigation bar com a cor branca
           )
         ),
         child: NavigationBar(  // Navigation Bar, ATENÇÃO, ta sendo usado o Navigation Bar aqui, não o BottomNavigationBar
@@ -52,14 +53,14 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Color.fromARGB(255, 1, 52, 96),
-          indicatorColor: Color.fromRGBO(0, 74, 143, 1),
+          backgroundColor: Colors.black,
+          indicatorColor: Color.fromRGBO(180, 156, 91, 1),
           selectedIndex: currentPageIndex,
           destinations: const <NavigationDestination>[
             NavigationDestination(
               icon: Icon(
                 Icons.home_outlined,
-                color: Colors.white,
+                color: Color.fromRGBO(180, 156, 91, 1),
                 ),
               label: 'Inicio',
               selectedIcon: Icon(
@@ -70,7 +71,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.fastfood_outlined,
-                color: Colors.white,
+                color: Color.fromRGBO(180, 156, 91, 1),
               ),
               label: 'Cardápio',
               selectedIcon: Icon(
@@ -81,7 +82,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.shopping_cart_outlined,
-                color: Colors.white,
+                color: Color.fromRGBO(180, 156, 91, 1),
                 ),
                 selectedIcon: Icon(
                   Icons.shopping_cart,
@@ -92,7 +93,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.person_outline,
-                color: Colors.white,
+                color: Color.fromRGBO(180, 156, 91, 1),
                 ),
                 selectedIcon: Icon(
                   Icons.person,
