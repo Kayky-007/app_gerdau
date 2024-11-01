@@ -43,7 +43,7 @@ class ModalCard extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
-              color: Color(0xFF1A4D6E),
+              color: Color.fromRGBO(180, 156, 91, 1),
             ),
             textAlign: TextAlign.center,
           ),
@@ -110,7 +110,7 @@ class ModalCard extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF1A4D6E),
+                  backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
