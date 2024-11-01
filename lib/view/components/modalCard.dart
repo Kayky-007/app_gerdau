@@ -52,7 +52,7 @@ class ModalCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
             child: Image.asset(
               imagemPath,
-              height: 150,
+              height: 180,
               fit: BoxFit.cover,
             ),
           ),
