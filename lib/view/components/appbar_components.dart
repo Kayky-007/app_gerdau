@@ -48,7 +48,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromRGBO(255, 204, 0, 1),
+            color: Color.fromRGBO(255, 204, 0, 1),
             shadows: [
               Shadow(
                 blurRadius: 13.0,

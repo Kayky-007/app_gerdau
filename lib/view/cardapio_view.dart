@@ -73,7 +73,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -120,7 +120,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -172,7 +172,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -220,7 +220,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Colors.black,
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
