@@ -52,14 +52,14 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Colors.black,
-          indicatorColor: Color.fromRGBO(180, 156, 91, 1),
+          backgroundColor: Color.fromARGB(255, 1, 52, 96),
+          indicatorColor: Color.fromARGB(255, 9, 84, 150),
           selectedIndex: currentPageIndex,
           destinations: const <NavigationDestination>[
             NavigationDestination(
               icon: Icon(
                 Icons.home_outlined,
-                color: Color.fromRGBO(180, 156, 91, 1),
+                color: Colors.white,
                 ),
               label: 'Inicio',
               selectedIcon: Icon(
@@ -70,7 +70,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.fastfood_outlined,
-                color: Color.fromRGBO(180, 156, 91, 1),
+                color: Colors.white,
               ),
               label: 'Cardápio',
               selectedIcon: Icon(
@@ -81,7 +81,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.shopping_cart_outlined,
-                color: Color.fromRGBO(180, 156, 91, 1),
+                color: Colors.white,
                 ),
                 selectedIcon: Icon(
                   Icons.shopping_cart,
@@ -92,7 +92,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             NavigationDestination(
               icon: Icon(
                 Icons.person_outline,
-                color: Color.fromRGBO(180, 156, 91, 1),
+                color: Colors.white,
                 ),
                 selectedIcon: Icon(
                   Icons.person,
