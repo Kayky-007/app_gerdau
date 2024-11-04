@@ -8,7 +8,6 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 import 'package:login_gerdau/view/inicio_view.dart';
 import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:login_gerdau/view/perfil_view.dart';
-// >>>>>>> 64ab53cb03f136cca7a9a7d267c2ba293bed69bd:lib/view/components/barra_navigacao.dart
 
 class BarraNavigacao extends StatefulWidget {
   const BarraNavigacao({super.key});
