@@ -3,6 +3,7 @@ import 'package:login_gerdau/controller/cardapio_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/modalCard.dart';
 
+
 class CardapioView extends StatefulWidget {
   const CardapioView({super.key});
 
@@ -34,7 +35,7 @@ class _CardapioViewState extends State<CardapioView> {
                   });
                 },
                 children: [
-                  Image.asset('assets/images/gd1.png', fit: BoxFit.cover),
+                  Image.asset('assets/images/gd1.jpg', fit: BoxFit.cover),
                   Image.asset('assets/images/ReceitAço.jpg', fit: BoxFit.cover),
                 ],
               ),
@@ -73,7 +74,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -106,7 +107,7 @@ class _CardapioViewState extends State<CardapioView> {
                     ),
                   ),
                 ),
-                SizedBox(width: 5), // Espaço entre os cards
+                SizedBox(width: 5), 
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
@@ -120,7 +121,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -172,7 +173,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -220,7 +221,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 0, 0, 0),
+                      color: Color.fromARGB(255, 1, 52, 96),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
