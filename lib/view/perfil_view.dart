@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/login_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
+import 'package:login_gerdau/view/login_view.dart';
 
 class PerfilView extends StatefulWidget {
   const PerfilView({super.key});
@@ -14,7 +15,6 @@ class _PerfilViewState extends State<PerfilView> {
   String? nomeUsuario;
   String? emailUsuario;
 
-  
   final LoginController _controller = LoginController();
 
   @override
@@ -35,6 +35,23 @@ class _PerfilViewState extends State<PerfilView> {
     });
   }
 
+  // Método para chamar o logout e redirecionar para a tela de login
+  Future<void> _logout() async {
+    // Chama o método de logout
+    await _controller.logout();
+
+    // Limpa as variáveis de perfil
+    setState(() {
+      nomeUsuario = null;
+      emailUsuario = null;
+    });
+
+    // Redireciona para a tela de login
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const LoginView()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +132,7 @@ class _PerfilViewState extends State<PerfilView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: _controller.logout, // Chama o método de logout
+                    onPressed: _logout, // Chama o método de logout
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       backgroundColor: const Color.fromRGBO(121, 9, 9, 1),

@@ -25,7 +25,7 @@ class _LoginViewState extends State<LoginView> {
 
       if (sucesso) {
         // Se o login for bem-sucedido, redireciona para a tela inicial
-        Navigator.pushReplacementNamed(context, '/painel');  // Usando pushNamed
+        Navigator.pushReplacementNamed(context, '/painel');
       } else {
         // Caso o login falhe
         ScaffoldMessenger.of(context).showSnackBar(
@@ -33,13 +33,12 @@ class _LoginViewState extends State<LoginView> {
         );
       }
     } catch (e) {
-      // Captura qualquer exceção e exibe uma mensagem genérica de erro
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Usuário e/ou senha inválidos.')),
       );
     } finally {
       setState(() {
-        _isLoading = false; // Desativa o carregamento
+        _isLoading = false;
       });
     }
   }
