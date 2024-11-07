@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:login_gerdau/controller/login_controller.dart';
 
 class InicioView extends StatefulWidget {
   const InicioView({super.key});
@@ -13,15 +14,31 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
+  String? nomeUsuario; // Variável para armazenar o nome do usuário
+
+  final LoginController _controller = LoginController();
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
+
+    // Carregar os dados do perfil assim que a tela for criada
+    _carregarDadosPerfil();
   }
 
+  // Método para carregar dados do perfil (nome do usuário)
+  Future<void> _carregarDadosPerfil() async {
+    // Recupera o nome do usuário
+    final nome = await _controller.obterNomeUsuario();
 
+    setState(() {
+      nomeUsuario = nome; // Atualiza o nome do usuário na variável
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: NestedScrollView(
@@ -45,9 +62,10 @@ class _InicioViewState extends State<InicioView> {
                           child: Icon(Icons.person, color: Colors.white),
                         ),
                         const SizedBox(width: 15),
-                        const Text(
-                          'Olá, (Nome)!',
-                          style: TextStyle(
+                        // Exibe o nome do usuário dinamicamente
+                        Text(
+                          'Olá, ${nomeUsuario ?? "Usuário"}!', // Exibe "Usuário" caso o nome não esteja disponível
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -55,11 +73,10 @@ class _InicioViewState extends State<InicioView> {
                         ),
                       ],
                     ),
-                    
                   ],
                 ),
                 EspacamentoH(h: 16),
-                    Container(
+                Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -95,7 +112,6 @@ class _InicioViewState extends State<InicioView> {
                     ],
                   ),
                 ),
-                // Aqui está o calendário usando table_calendar
                 TableCalendar(
                   firstDay: DateTime.utc(2020, 1, 1),
                   lastDay: DateTime.utc(2030, 12, 31),
@@ -107,13 +123,11 @@ class _InicioViewState extends State<InicioView> {
                       _focusedDay = focusedDay;
                     });
                   },
-
                   calendarStyle: const CalendarStyle(
                     selectedDecoration: BoxDecoration(
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
-                    
                     weekendTextStyle: TextStyle(color: Colors.red),
                   ),
                   headerStyle: const HeaderStyle(
@@ -123,7 +137,7 @@ class _InicioViewState extends State<InicioView> {
                     rightChevronIcon: Icon(Icons.chevron_right),
                   ),
                 ),
-                 EspacamentoH(h: 12),
+                EspacamentoH(h: 12),
                 const Text(
                   'Aqui está um resumo do seu dia:',
                   style: TextStyle(
@@ -131,7 +145,7 @@ class _InicioViewState extends State<InicioView> {
                     color: Colors.grey,
                   ),
                 ),
-                EspacamentoH(h: 12),                    
+                EspacamentoH(h: 12),
                 // Cartões de resumo
                 Card(
                   color: const Color.fromARGB(255, 1, 52, 96),
@@ -146,7 +160,6 @@ class _InicioViewState extends State<InicioView> {
                     trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
                   ),
                 ),
-                    
                 EspacamentoH(h: 20),
                 Card(
                   color: const Color.fromARGB(255, 1, 52, 96),
@@ -161,7 +174,6 @@ class _InicioViewState extends State<InicioView> {
                     trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
                   ),
                 ),
-                    
                 EspacamentoH(h: 16),
                 Card(
                   color: const Color.fromARGB(255, 1, 52, 96),
