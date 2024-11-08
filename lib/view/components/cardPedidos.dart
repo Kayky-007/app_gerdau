@@ -24,7 +24,7 @@ class CardPedidos extends StatelessWidget {
     return GestureDetector(
       onTap: () => _showAlertPedido(context),  // Função do alert 
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(5.0),
         child: Card(
           color: Colors.black,
           shape: RoundedRectangleBorder(
