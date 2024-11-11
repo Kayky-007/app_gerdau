@@ -87,7 +87,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         EspacamentoH(h: 10),
                         TextField(
-                          controller: _controller.email_usuario,
+                          controller: _controller.chapa_usuario,
                           decoration: InputDecoration(
                             labelText: 'Chapa',
                             prefixIcon: Icon(Icons.badge, color: Colors.blueGrey[800]),

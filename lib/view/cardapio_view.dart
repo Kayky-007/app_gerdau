@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_gerdau/controller/cardapio_controller.dart';
+import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/modalCard.dart';
 
@@ -13,8 +13,7 @@ class CardapioView extends StatefulWidget {
 
 class _CardapioViewState extends State<CardapioView> {
   PageController arrastar = PageController();
-  CardapioController _controller = CardapioController();
-
+  int cont_pagina = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +30,7 @@ class _CardapioViewState extends State<CardapioView> {
                 controller: arrastar,
                 onPageChanged: (int index) {
                   setState(() {
-                    _controller.cont_pagina = index;
+                    cont_pagina = index;
                   });
                 },
                 children: [
@@ -48,9 +47,9 @@ class _CardapioViewState extends State<CardapioView> {
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   height: 10,
-                  width: _controller.cont_pagina == index ? 20 : 10,
+                  width: cont_pagina == index ? 20 : 10,
                   decoration: BoxDecoration(
-                    color: _controller.cont_pagina == index
+                    color: cont_pagina == index
                         ? Colors.blue
                         : Colors.grey,
                     borderRadius: BorderRadius.circular(12),

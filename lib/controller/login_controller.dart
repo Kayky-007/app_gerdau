@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:login_gerdau/model/login_model.dart';
 
 class LoginController {
-  TextEditingController email_usuario = TextEditingController();
+  TextEditingController chapa_usuario = TextEditingController();
   TextEditingController senha_usuario = TextEditingController();
   FlutterSecureStorage storage = FlutterSecureStorage();
   LoginModel loginModel = LoginModel();
@@ -11,7 +11,7 @@ class LoginController {
 
   // Método para fazer login
   Future<bool> logar() async {
-    loginModel.email_usuario = email_usuario.text;
+    loginModel.chapa_usuario = chapa_usuario.text;
     loginModel.senha_usuario = senha_usuario.text;
 
     // Obtendo o token e outros dados após o login
@@ -23,11 +23,11 @@ class LoginController {
 
       // Armazenando o nome e e-mail do usuário
       String? nomeUsuario = await loginModel.obterNomeUsuario();
-      String? emailUsuario = await loginModel.obterEmailUsuario();
+      String? chapaUsuario = await loginModel.obterChapaUsuario();
 
-      if (nomeUsuario != null && emailUsuario != null) {
+      if (nomeUsuario != null && chapaUsuario != null) {
         await storage.write(key: 'nome_usuario', value: nomeUsuario);
-        await storage.write(key: 'email_usuario', value: emailUsuario);
+        await storage.write(key: 'chapa_usuario', value: chapaUsuario);
       }
 
       return true; // Login bem-sucedido
@@ -48,13 +48,13 @@ class LoginController {
 
   // Método para recuperar o e-mail do usuário armazenado
   Future<String?> obterEmailUsuario() async {
-    return await storage.read(key: 'email_usuario');
+    return await storage.read(key: 'chapa_usuario');
   }
 
   // Método para limpar dados (logout)
   Future<void> logout() async {
     await storage.delete(key: 'token');
     await storage.delete(key: 'nome_usuario');
-    await storage.delete(key: 'email_usuario');
+    await storage.delete(key: 'chapa_usuario');
   }
 }
