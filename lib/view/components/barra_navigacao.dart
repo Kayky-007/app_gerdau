@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/view/avaliacao_view.dart';
 import 'package:login_gerdau/view/cardapio_view.dart';
 // <<<<<<< HEAD:lib/views/components/barra_navigacao.dart
 // import 'package:login_gerdau/views/cardapio_view.dart';
@@ -35,7 +36,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             body: PedidosView(),
           ),
           Scaffold(
-            body: PerfilView(),
+            body: AvaliacaoView(),
           ),
         ],
       ),
@@ -91,14 +92,14 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.person_outline,
+                Icons.star,
                 color: Colors.white,
                 ),
                 selectedIcon: Icon(
-                  Icons.person,
+                  Icons.star,
                   color: Colors.white,
                   ),
-              label: 'Perfil',
+              label: 'Avaliação',
             ),
           ],
         ),    

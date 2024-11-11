@@ -8,11 +8,12 @@ class PratosModel {
   String? ingredientes;
   String? dataCardapio;
 
-  PratosModel(
-      {this.nomePrato,
-      this.descricaoPrato,
-      this.ingredientes,
-      this.dataCardapio});
+  PratosModel({
+    this.nomePrato,
+    this.descricaoPrato,
+    this.ingredientes,
+    this.dataCardapio,
+  });
 
   PratosModel.fromJson(Map<String, dynamic> json) {
     nomePrato = json['nome_prato'];
@@ -22,29 +23,27 @@ class PratosModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nome_prato'] = this.nomePrato;
-    data['descricao_prato'] = this.descricaoPrato;
-    data['ingredientes'] = this.ingredientes;
-    data['data_cardapio'] = this.dataCardapio;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nome_prato'] = nomePrato;
+    data['descricao_prato'] = descricaoPrato;
+    data['ingredientes'] = ingredientes;
+    data['data_cardapio'] = dataCardapio;
     return data;
   }
 
-   static Future<PratosModel> dadosPratos(token) async {
-    TextEditingController dia_API = TextEditingController();
-    
-    final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=29/11/2024'); 
+  static Future<PratosModel> dadosPratos(String token, String diaAPI) async {
+    final url = Uri.parse(
+      'http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=$diaAPI',
+    ); 
     final response = await http.get(url, headers: {'authorization': token});
     print(response.body[0]);
-      
-       if (response.statusCode == 200) {
+
+    if (response.statusCode == 200) {
       final Map<String, dynamic> decodedJson = jsonDecode(response.body);
 
-      // Verifica se há dados na chave "dados"
       if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
         final dados = decodedJson['dados'] as List;
         if (dados.isNotEmpty) {
-          // Retorna o primeiro item como PratosModel
           return PratosModel.fromJson(dados[0]);
         } else {
           throw Exception('Nenhum prato encontrado.');
@@ -52,11 +51,8 @@ class PratosModel {
       } else {
         throw Exception('Formato de JSON inválido.');
       }
-       //return PratosModel.fromJson(jsonDecode(response.body)as Map<String, dynamic>);
-
-      } else {
-        throw Exception('Falha ao realizar login');
-      }
-
-   }
+    } else {
+      throw Exception('Falha ao realizar login');
+    }
+  }
 }
