@@ -57,6 +57,5 @@ class PratosModel {
       } else {
         throw Exception('Falha ao realizar login');
       }
-
    }
 }

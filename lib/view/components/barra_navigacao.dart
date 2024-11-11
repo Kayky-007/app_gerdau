@@ -52,7 +52,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+          backgroundColor: Color.fromRGBO(0, 0, 0, 1),
           indicatorColor: Color.fromARGB(255, 99, 85, 24),
           selectedIndex: currentPageIndex,
           destinations: const <NavigationDestination>[

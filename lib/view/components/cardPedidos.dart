@@ -5,16 +5,14 @@ import 'package:flutter_dropdown_alert/model/data_alert.dart';
 class CardPedidos extends StatelessWidget {
   // Informações dos pedidos
   final String prato;
-  final String buffet;
-  final String tamanho;
+  final String descricao;
   final String horario;
   final String imagemPath;
 
   const CardPedidos({
     super.key,
     required this.prato,
-    required this.buffet,
-    required this.tamanho,
+    required this.descricao,
     required this.horario,
     required this.imagemPath,
   });
@@ -62,7 +60,7 @@ class CardPedidos extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Buffet: $buffet',      // Categoria do prato
+                        'Descrição: $descricao',      // Categoria do prato
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
@@ -70,11 +68,7 @@ class CardPedidos extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Tamanho: $tamanho',      // Tamanho do prato
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      ),
-                      Text(
-                        'Pedido: $horario',           // Horário que o prato foi pedido
+                        'Agendamento: $horario',           // Horário que o prato foi pedido
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ],
@@ -166,11 +160,7 @@ class CardPedidos extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                'Buffet: $buffet',
-                style: TextStyle(color: Colors.white70),
-              ),
-              Text(
-                'Tamanho: $tamanho',
+                'Descrição: $descricao',
                 style: TextStyle(color: Colors.white70),
               ),
               Text(

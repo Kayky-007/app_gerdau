@@ -155,16 +155,7 @@ class _ModalCardState extends State<ModalCard> {
                   fontWeight: FontWeight.bold),
             ),
             ListTile(
-              title: Text('Prato principal: ',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text('${widget.pratoPrincipal}',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
-            ),
-            ListTile(
-              title: Text('Acompanhamento: ',
+              title: Text('Ingredientes: ',
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -172,46 +163,7 @@ class _ModalCardState extends State<ModalCard> {
               subtitle: Text('${widget.acompanhamento}',
                   style: TextStyle(fontSize: 18, color: Colors.black)),
             ),
-            ListTile(
-              title: Text('Sobremesa: ',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text('${widget.sobremesa}',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
-            ),
             SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: selectedSize,
-              decoration: InputDecoration(
-                labelText: 'Escolha o Tamanho',
-                labelStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              ),
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              dropdownColor: Colors.white,
-              items: ['Pequeno', 'Médio', 'Grande']
-                  .map((size) => DropdownMenuItem(
-                        value: size,
-                        child:
-                            Text(size, style: TextStyle(color: Colors.black)),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedSize = value; // Atualiza o tamanho selecionado
-                });
-              },
-            ),
-            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -240,17 +192,16 @@ class _ModalCardState extends State<ModalCard> {
                   ),
                   child: Text("Confirmar"),
                   onPressed: () {
-                    if (selectedSize != null) {
-                      print('Prato escolhido: ${widget.pratoPrincipal}');
-                      print('Tamanho escolhido: $selectedSize');
-                      AlertController.show(
-                          "Pedido Confirmado",
-                          "Seu pedido foi confirmado com sucesso!",
-                          TypeAlert.success);
-                    } else {
-                      AlertController.show("Erro",
-                          "Por favor, selecione um tamanho.", TypeAlert.error);
-                    }
+                    // if (selectedSize != null) {
+                    //   print('Prato escolhido: ${widget.pratoPrincipal}');
+                    //   AlertController.show(
+                    //       "Pedido Confirmado",
+                    //       "Seu pedido foi confirmado com sucesso!",
+                    //       TypeAlert.success);
+                    // } else {
+                    //   AlertController.show("Erro",
+                    //       "Por favor, selecione um tamanho.", TypeAlert.error);
+                    // }
                     Navigator.of(context).pop();
                   },
                 ),
