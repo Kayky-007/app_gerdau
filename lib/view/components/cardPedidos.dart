@@ -1,26 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dropdown_alert/alert_controller.dart';
-import 'package:flutter_dropdown_alert/model/data_alert.dart';
+import 'package:login_gerdau/controller/pedidos_controller.dart';
+import 'package:login_gerdau/controller/pratos_controller.dart';
 
 class CardPedidos extends StatelessWidget {
-  // Informações dos pedidos
-  final String prato;
+  final int idPrato;
+  final String nomePrato;
   final String descricao;
-  final String horario;
+  final String dataAgendamento;
+  final String dataPedido;
   final String imagemPath;
+  final int idPedido; 
+  final Function(int) onPedidoCancelado;
 
-  const CardPedidos({
+   CardPedidos({
     super.key,
-    required this.prato,
+    required this.nomePrato,
     required this.descricao,
-    required this.horario,
+    required this.dataAgendamento,
+    required this.dataPedido,
     required this.imagemPath,
+    required this.idPedido, 
+    required this.onPedidoCancelado,
+    required this.idPrato,
   });
 
+  final PedidosController _pedidosController = PedidosController();
+  final PratosController _pratosController = PratosController();
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _showAlertPedido(context),  // Função do alert 
+      onTap: () => _showAlertPedido(context), 
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Card(
@@ -38,7 +47,7 @@ class CardPedidos extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
-                    imagemPath,          // Imagem do prato
+                    imagemPath,
                     width: 80,
                     height: 80,
                     fit: BoxFit.cover,
@@ -51,7 +60,7 @@ class CardPedidos extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        prato,                 // Nome do prato
+                        nomePrato,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -60,7 +69,7 @@ class CardPedidos extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Descrição: $descricao',      // Categoria do prato
+                        'Descrição: $descricao',
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 13,
@@ -68,7 +77,7 @@ class CardPedidos extends StatelessWidget {
                       ),
                       SizedBox(height: 4),
                       Text(
-                        'Agendamento: $horario',           // Horário que o prato foi pedido
+                        'Data Agendamento: $dataAgendamento',
                         style: TextStyle(color: Colors.white, fontSize: 12),
                       ),
                     ],
@@ -76,12 +85,11 @@ class CardPedidos extends StatelessWidget {
                 ),
                 SizedBox(width: 12),
                 ElevatedButton(
-                  onPressed: () {
-                    AlertController.show(
-                      "Pedido Cancelado",
-                      "Seu pedido foi cancelado!",
-                      TypeAlert.error,
-                    );
+                  onPressed: () async {
+                    bool sucesso = await _pedidosController.cancelarPedido(idPedido);
+                    if (sucesso) {
+                      onPedidoCancelado(idPedido);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -107,8 +115,16 @@ class CardPedidos extends StatelessWidget {
     );
   }
 
-// Função do alert
-  void _showAlertPedido(BuildContext context) {
+ void _showAlertPedido(BuildContext context) async {
+  // Esperar a resposta da API antes de mostrar o alerta
+  try {
+    // Aguarda a resposta da API
+    final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
+    
+    // Extraímos os ingredientes da resposta
+    final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados"; 
+
+    // Exibe o alerta com os ingredientes
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -146,7 +162,7 @@ class CardPedidos extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                '- Frango\n- Salada\n- Arroz Branco\n- Feijão',
+                ingredientes,
                 style: TextStyle(color: Colors.white70),
               ),
               SizedBox(height: 16),
@@ -164,7 +180,11 @@ class CardPedidos extends StatelessWidget {
                 style: TextStyle(color: Colors.white70),
               ),
               Text(
-                'Horário do Pedido: $horario',
+                'Data do Agendamento: $dataAgendamento',
+                style: TextStyle(color: Colors.white70),
+              ),
+              Text(
+                'Data do Pedido: $dataPedido',
                 style: TextStyle(color: Colors.white70),
               ),
             ],
@@ -195,5 +215,9 @@ class CardPedidos extends StatelessWidget {
         );
       },
     );
+  } catch (e) {
+    // Caso ocorra algum erro, exibe uma mensagem de erro
+    print("Erro ao obter ingredientes: $e");
   }
+}
 }

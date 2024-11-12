@@ -192,16 +192,16 @@ class _ModalCardState extends State<ModalCard> {
                   ),
                   child: Text("Confirmar"),
                   onPressed: () {
-                    // if (selectedSize != null) {
-                    //   print('Prato escolhido: ${widget.pratoPrincipal}');
-                    //   AlertController.show(
-                    //       "Pedido Confirmado",
-                    //       "Seu pedido foi confirmado com sucesso!",
-                    //       TypeAlert.success);
-                    // } else {
-                    //   AlertController.show("Erro",
-                    //       "Por favor, selecione um tamanho.", TypeAlert.error);
-                    // }
+                    if (selectedSize != null) {
+                      print('Prato escolhido: ${widget.pratoPrincipal}');
+                      AlertController.show(
+                          "Pedido Confirmado",
+                          "Seu pedido foi confirmado com sucesso!",
+                          TypeAlert.success);
+                    } else {
+                      AlertController.show("Erro",
+                          "Por favor, selecione um tamanho.", TypeAlert.error);
+                    }
                     Navigator.of(context).pop();
                   },
                 ),
