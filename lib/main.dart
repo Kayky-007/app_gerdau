@@ -21,20 +21,35 @@ class MyApp extends StatelessWidget {
       ),
       //cores do app
       theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          appBarTheme: AppBarTheme(
-              foregroundColor: Colors.white,
-              backgroundColor: Color.fromRGBO(1, 52, 91, 1))),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+            foregroundColor: Colors.white,
+            backgroundColor: Color.fromRGBO(1, 52, 91, 1)),
+        inputDecorationTheme: InputDecorationTheme(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey), 
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+                color: Color.fromRGBO(129, 108, 12, 1), width: 2.0),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          labelStyle: TextStyle(color: Colors.grey), 
+          floatingLabelStyle:
+              TextStyle(color: Color.fromRGBO(129, 108, 12, 1)), 
+        ),
+      ),
       routes: {
         // Splash Screen iniciando a aplicação e redirecionando para a tela de login
         '/': (context) => AnimatedSplashScreen(
             duration: 2000,
-            splash: 'assets/images/logo_splashscreen.png',
+            splash: 'assets/images/logoGRSA_splashscreen.png',
             nextScreen: LoginView(),
             splashTransition: SplashTransition.fadeTransition,
             pageTransitionType: PageTransitionType.topToBottom,
             splashIconSize: 150,
-            backgroundColor: Color.fromARGB(255, 1, 52, 96)),
+            backgroundColor: Colors.white),
         '/painel': (context) => const PainelView(),
         '/login': (context) => const LoginView(),
         '/cardapio': (context) => const CardapioView(),
