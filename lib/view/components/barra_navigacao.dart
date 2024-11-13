@@ -9,17 +9,17 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 import 'package:login_gerdau/view/inicio_view.dart';
 import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:login_gerdau/view/perfil_view.dart';
-
+ 
 class BarraNavigacao extends StatefulWidget {
   const BarraNavigacao({super.key});
-
+ 
   @override
   State<BarraNavigacao> createState() => _BarraNavigacaoState();
 }
-
+ 
 class _BarraNavigacaoState extends State<BarraNavigacao> {
   int currentPageIndex = 0;
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             body: PedidosView(),
           ),
           Scaffold(
-            body: AvaliacaoView(),
+            body: PerfilView(),
           ),
         ],
       ),
@@ -53,7 +53,7 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               currentPageIndex = index;
             });
           },
-          backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+          backgroundColor: Color.fromRGBO(129, 108, 12, 1),
           indicatorColor: Color.fromARGB(255, 99, 85, 24),
           selectedIndex: currentPageIndex,
           destinations: const <NavigationDestination>[
@@ -92,14 +92,14 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
             ),
             NavigationDestination(
               icon: Icon(
-                Icons.star,
+                Icons.account_circle_outlined,
                 color: Colors.white,
                 ),
                 selectedIcon: Icon(
-                  Icons.star,
+                  Icons.account_circle,
                   color: Colors.white,
                   ),
-              label: 'Avaliação',
+              label: 'Perfil',
             ),
           ],
         ),    
