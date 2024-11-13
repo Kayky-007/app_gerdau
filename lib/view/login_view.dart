@@ -163,34 +163,6 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         EspacamentoH(h: 10),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.person_add,
-                              color: Color.fromRGBO(129, 108, 12, 1),
-                            ),
-                            label: Text(
-                              'Criar conta',
-                              style: TextStyle(
-                                color: Color.fromRGBO(129, 108, 12, 1),
-                              ),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              side: BorderSide(
-                                color: Color.fromRGBO(129, 108, 12, 1),
-                                width: 2.0,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 15,
-                              ),
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
