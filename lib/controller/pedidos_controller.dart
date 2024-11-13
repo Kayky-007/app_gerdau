@@ -27,13 +27,16 @@ class PedidosController {
   }
 
   // Método para enviar a avaliação do pedido
-  Future<bool> enviarAvaliacao(int idPedido, int notaPedido) async {
+  Future<void> enviarAvaliacao(int idPedido, int notaPedido, Function onSuccess) async {
     String? token = await storage.read(key: 'token');
 
     if (token != null && token.isNotEmpty) {
-      return await PedidosModel.enviarAvaliacao(idPedido, notaPedido, token);
+      // Passa a função de callback `onSuccess` para o método `enviarAvaliacao`
+      await PedidosModel.enviarAvaliacao(idPedido, notaPedido, token, onSuccess);
     } else {
       throw Exception('Token não encontrado. O login é necessário.');
     }
   }
 }
+
+
