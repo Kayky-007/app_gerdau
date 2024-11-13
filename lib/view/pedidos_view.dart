@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/pedidos_controller.dart';
+import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/cardPedidos.dart';
 import 'package:login_gerdau/model/pedidos_model.dart';
@@ -58,8 +59,8 @@ class _PedidosViewState extends State<PedidosView> {
     setState(() {
       _exibirPedidosNaoAvaliados = exibirNaoAvaliados;
       if (exibirNaoAvaliados) {
-        // Exibe uma lista vazia para pedidos não avaliados
-        _pedidosFiltrados = [];
+        // Filtro para exibir apenas pedidos não avaliados
+        _pedidosFiltrados = _pedidos.where((pedido) => pedido.notaPedido == 0).toList();
       } else {
         // Exibe todos os pedidos
         _pedidosFiltrados = _pedidos;
@@ -89,12 +90,17 @@ class _PedidosViewState extends State<PedidosView> {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: _exibirPedidosNaoAvaliados ? Colors.transparent : Colors.amber, width: 2)),
+                        border: Border(
+                          bottom: BorderSide(
+                            color: !_exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent, 
+                            width: 2, // Espessura da borda
+                          ),
+                        ),
                       ),
                       child: Text(
                         'Todos os Pedidos',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: !_exibirPedidosNaoAvaliados ? Colors.black : Colors.grey,
                           fontSize: 16,
                         ),
                       ),
@@ -107,12 +113,17 @@ class _PedidosViewState extends State<PedidosView> {
                     child: Container(
                       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                       decoration: BoxDecoration(
-                        border: Border(bottom: BorderSide(color: !_exibirPedidosNaoAvaliados ? Colors.transparent : Colors.amber, width: 2)),
+                        border: Border(
+                          bottom: BorderSide(
+                            color: _exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent, 
+                            width: 2, // Espessura da borda
+                          ),
+                        ),
                       ),
                       child: Text(
                         'Pedidos Não Avaliados',
                         style: TextStyle(
-                          color: Colors.black,
+                          color: _exibirPedidosNaoAvaliados ? Colors.black : Colors.grey,
                           fontSize: 16,
                         ),
                       ),
@@ -124,7 +135,7 @@ class _PedidosViewState extends State<PedidosView> {
             // Exibição de pedidos
             _isLoading
                 ? Center(child: CircularProgressIndicator())
-                : _exibirPedidosNaoAvaliados
+                : _exibirPedidosNaoAvaliados && _pedidosFiltrados.isEmpty
                     ? Expanded(
                         child: Center(
                           child: Text(

@@ -8,7 +8,7 @@ class PedidosModel {
   final int idPedido;
   final String dataPedido;
   final String dataAgendamento;
-  final int notaPedido;
+  final int notaPedido; // A nota do pedido (0 = não avaliado)
   final String nomePrato;
   final String descricaoPrato;
 
@@ -27,17 +27,18 @@ class PedidosModel {
       idPrato: json['id_prato'] ?? 0,
       idPedido: json['id_pedido'] ?? 0,
       dataPedido: json['data_pedido'] ?? '',
-      notaPedido: json['nota_pedido'] ?? 0,
+      notaPedido: json['nota_pedido'] ?? 0, // O valor 0 indica que o pedido não foi avaliado
       nomePrato: json['nome_prato'] ?? '',
       descricaoPrato: json['descricao_prato'] ?? '',
       dataAgendamento: json['data_do_agendamento'] ?? '',
     );
   }
 
+  // Método estático para buscar os pedidos do usuário
   static Future<List<PedidosModel>> obterPedidosDia(String token) async {
     final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarPedidosPorUsuario.php');
     final response = await http.get(url, headers: {'authorization': token});
-    
+
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedJson = jsonDecode(response.body);
 
@@ -75,6 +76,46 @@ class PedidosModel {
         AlertController.show(
           "Erro ao Cancelar Pedido",
           responseData['dados']['mensagem'] ?? "Houve um erro ao tentar cancelar o pedido.",
+          TypeAlert.error,
+        );
+        return false;
+      }
+    } catch (e) {
+      AlertController.show(
+        "Erro de Conexão",
+        "Ocorreu um erro ao tentar se conectar ao servidor.",
+        TypeAlert.error,
+      );
+      return false;
+    }
+  }
+
+  // Função para enviar a avaliação do pedido
+  static Future<bool> enviarAvaliacao(int idPedido, int notaPedido, String token) async {
+    try {
+      final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/avaliarPedido.php');
+      final response = await http.post(
+        url,
+        headers: {'authorization': token},
+        body: {
+          'id_pedido': idPedido.toString(),
+          'nota_pedido': notaPedido.toString(),
+        },
+      );
+
+      final responseData = json.decode(response.body);
+
+      if (responseData['dados']['sucesso']) {
+        AlertController.show(
+          "Avaliação Enviada",
+          "Sua avaliação foi enviada com sucesso!",
+          TypeAlert.success,
+        );
+        return true;
+      } else {
+        AlertController.show(
+          "Erro ao Enviar Avaliação",
+          responseData['dados']['mensagem'] ?? "Houve um erro ao tentar enviar a avaliação.",
           TypeAlert.error,
         );
         return false;

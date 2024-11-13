@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/pedidos_controller.dart';
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CardPedidos extends StatelessWidget {
   final int idPrato;
@@ -9,27 +12,28 @@ class CardPedidos extends StatelessWidget {
   final String dataAgendamento;
   final String dataPedido;
   final String imagemPath;
-  final int idPedido; 
+  final int idPedido;
   final Function(int) onPedidoCancelado;
 
-   CardPedidos({
+  CardPedidos({
     super.key,
     required this.nomePrato,
     required this.descricao,
     required this.dataAgendamento,
     required this.dataPedido,
     required this.imagemPath,
-    required this.idPedido, 
+    required this.idPedido,
     required this.onPedidoCancelado,
     required this.idPrato,
   });
 
   final PedidosController _pedidosController = PedidosController();
   final PratosController _pratosController = PratosController();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _showAlertPedido(context), 
+      onTap: () => _showAlertPedido(context),
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Card(
@@ -115,16 +119,14 @@ class CardPedidos extends StatelessWidget {
     );
   }
 
- void _showAlertPedido(BuildContext context) async {
-  // Esperar a resposta da API antes de mostrar o alerta
+  void _showAlertPedido(BuildContext context) async {
   try {
-    // Aguarda a resposta da API
     final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
-    
-    // Extraímos os ingredientes da resposta
     final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados"; 
 
-    // Exibe o alerta com os ingredientes
+    // Divida os ingredientes, assumindo que os ingredientes são separados por vírgula ou outro delimitador.
+    final listaIngredientes = ingredientes.split(','); // Alterar para o delimitador adequado, se necessário
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -161,10 +163,13 @@ class CardPedidos extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8),
-              Text(
-                ingredientes,
-                style: TextStyle(color: Colors.white70),
-              ),
+              // Exibindo cada ingrediente em uma nova linha com prefixo "- "
+              ...listaIngredientes.map((ingrediente) {
+                return Text(
+                  '- ${ingrediente.trim()}', // Remover espaços extras com `trim()`
+                  style: TextStyle(color: Colors.white70),
+                );
+              }).toList(),
               SizedBox(height: 16),
               Divider(color: Colors.white54),
               Text(
@@ -190,24 +195,135 @@ class CardPedidos extends StatelessWidget {
             ],
           ),
           actions: [
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Botão Fechar
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 24,
+                    ),
                   ),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 24,
+                  child: Text(
+                    'Fechar',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
+                SizedBox(width: 20),
+                // Botão Avaliar
+                ElevatedButton(
+                  onPressed: () {
+                    _showRatingDialog(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(255, 204, 0, 1), // Dourado
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 24,
+                    ),
+                  ),
+                  child: Text(
+                    'Avaliar',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  } catch (e) {
+    print("Erro ao obter ingredientes: $e");
+  }
+}
+
+
+  void _showRatingDialog(BuildContext context) {
+    int rating = 0; // Inicializa a avaliação com 0 estrelas
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[900],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Row(
+            children: [
+              Icon(
+                Icons.star_border,
+                color: Color.fromRGBO(255, 204, 0, 1),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Avalie o Pedido',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              RatingBar.builder(
+                initialRating: rating.toDouble(),
+                minRating: 1,
+                itemSize: 40.0,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  );
+                },
+                onRatingUpdate: (newRating) {
+                  rating = newRating.toInt(); // Atualiza a avaliação com base na seleção
+                },
+              ),
+            ],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () async {
+                // Envia a avaliação para a API
+                bool sucesso = await _pedidosController.enviarAvaliacao(idPedido, rating);
+                if (sucesso) {
+                  Navigator.pop(context); // Fecha o modal de avaliação
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Avaliação enviada com sucesso!')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Falha ao enviar avaliação!')),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(255, 204, 0, 1),
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+              ),
+              child: Center(
                 child: Text(
-                  'Fechar',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  'Enviar Avaliação',
+                  style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
             ),
@@ -215,9 +331,5 @@ class CardPedidos extends StatelessWidget {
         );
       },
     );
-  } catch (e) {
-    // Caso ocorra algum erro, exibe uma mensagem de erro
-    print("Erro ao obter ingredientes: $e");
   }
-}
 }
