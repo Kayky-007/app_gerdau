@@ -95,6 +95,8 @@ flutter:
   - assets/images/comida_card3.png
   - assets/images/comida_card4.png
   - assets/images/gd1.png
+  - assets/images/logoGRSA_splashscreen.png
+  - assets/images/logoGRSA_login.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

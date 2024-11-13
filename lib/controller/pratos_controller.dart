@@ -1,15 +1,15 @@
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:login_gerdau/model/pratos_model.dart';
 
 class PratosController {
-  FlutterSecureStorage storage = FlutterSecureStorage();
+  final storage = FlutterSecureStorage();
 
-  // Método para obter dados de pratos usando o token armazenado
-  Future<PratosModel> obterDadosPratos() async {
+  Future<PratosModel> obterDadosPratos(String diaAPI) async {
     // Recupera o token do armazenamento seguro
     String? token = await storage.read(key: 'token');
 
-    // Verifica se o token está disponível
+    // Verifique se o token está disponível
     if (token != null && token.isNotEmpty) {
       // Usa o token para buscar os dados dos pratos
       PratosModel pratosModel = await PratosModel.dadosPratos(token);

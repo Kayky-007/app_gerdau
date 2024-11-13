@@ -46,23 +46,24 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: const Text(
-            'Login - Avaliação Refeitorio',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-        backgroundColor: Color.fromRGBO(9, 68, 121, 1),
-      ),
+      // appBar: AppBar(
+      //   title: Center(
+      //     child: const Text(
+      //       'Login - Avaliação Refeitorio',
+      //       style: TextStyle(
+      //         color: Colors.white,
+      //       ),
+      //     ),
+      //   ),
+      //   backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+      // ),
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/images/logo_fundo3.jpg'),  // Substitua pelo caminho da sua imagem de fundo
-              fit: BoxFit.cover,  // Ajusta para cobrir toda a tela
+              image: AssetImage(
+                  'assets/images/logo_fundo3.jpg'), // Substitua pelo caminho da sua imagem de fundo
+              fit: BoxFit.cover, // Ajusta para cobrir toda a tela
             ),
           ),
           child: Padding(
@@ -76,21 +77,22 @@ class _LoginViewState extends State<LoginView> {
                   ),
                   elevation: 5,
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(18.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/images/logo_gerdau_login.png',
+                          'assets/images/logoGRSA_login.png',
                           width: 150,
                           height: 150,
                         ),
-                        EspacamentoH(h: 10),
+                        EspacamentoH(h: 5),
                         TextField(
                           controller: _controller.chapa_usuario,
                           decoration: InputDecoration(
                             labelText: 'Chapa',
-                            prefixIcon: Icon(Icons.badge, color: Colors.blueGrey[800]),
+                            prefixIcon:
+                                Icon(Icons.badge, color: Colors.blueGrey[800]),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -102,7 +104,8 @@ class _LoginViewState extends State<LoginView> {
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: 'Senha',
-                            prefixIcon: Icon(Icons.lock, color: Colors.blueGrey[800]),
+                            prefixIcon:
+                                Icon(Icons.lock, color: Colors.blueGrey[800]),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ),
@@ -114,13 +117,19 @@ class _LoginViewState extends State<LoginView> {
                           children: [
                             TextButton(
                               onPressed: () {},
-                              child: const Text('Esqueci minha senha'),
+                              child: const Text(
+                                'Esqueci minha senha',
+                                style: TextStyle(
+                                    color: Colors.black54,
+                                    decoration: TextDecoration.underline),
+                              ),
                             ),
                             Row(
                               children: [
                                 Text('Lembrar-me'),
                                 Checkbox(
                                   value: _rememberMe,
+                                  activeColor: Color.fromRGBO(129, 108, 12, 1),
                                   onChanged: (bool? value) {
                                     setState(() {
                                       _rememberMe = value!;
@@ -132,23 +141,28 @@ class _LoginViewState extends State<LoginView> {
                           ],
                         ),
                         EspacamentoH(h: 15),
-                        ElevatedButton(
-                          onPressed: _isLoading ? null : _tentarLogin, // Desativa o botão enquanto o login está sendo processado
-                          child: _isLoading
-                              ? CircularProgressIndicator(
-                                  color: Colors.white,
-                                )
-                              : const Text('Entrar'),
-                          style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Color.fromRGBO(9, 68, 121, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: _isLoading
+                                ? null
+                                : _tentarLogin, // Desativa o botão enquanto o login está sendo processado
+                            child: _isLoading
+                                ? CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : const Text('Entrar'),
+                            style: ElevatedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              padding: const EdgeInsets.symmetric(vertical: 15),
                             ),
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 15, horizontal: 30),
                           ),
                         ),
+                        EspacamentoH(h: 10),
                       ],
                     ),
                   ),

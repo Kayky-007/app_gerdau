@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
+import 'package:login_gerdau/model/pratos_modal.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -46,7 +47,7 @@ class _ModalCardState extends State<ModalCard> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late String dia_marcado;
-  late String dia_API = dia_marcado;
+  late String dia_API; // Agora será atualizado com a data selecionada
   bool visivel = false;
   String? selectedSize;
   PratosController controller = PratosController();
@@ -57,6 +58,7 @@ class _ModalCardState extends State<ModalCard> {
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
     dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
+    dia_API = dia_marcado; // Inicializando a variável
   }
 
   @override
@@ -105,14 +107,21 @@ class _ModalCardState extends State<ModalCard> {
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: _focusedDay,
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) {
+                onDaySelected: (selectedDay, focusedDay) async {
+                  // Realize a operação assíncrona fora do setState
+                  dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
+                  await controller
+                      .obterDadosPratos(dia_API); // Tarefa assíncrona
+
+                  // Agora, chame o setState para atualizar a UI
                   setState(() {
-                    dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
                     visivel = false;
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
                     dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
                   });
+
+                  print(dia_API);
                 },
                 calendarStyle: const CalendarStyle(
                   selectedDecoration: BoxDecoration(
@@ -140,8 +149,7 @@ class _ModalCardState extends State<ModalCard> {
               ),
               child: Text("Datas"),
               onPressed: () async {
-                await controller.obterDadosPratos();
-                
+                // Passando a data selecionada
                 setState(() {
                   visivel = true;
                 });
