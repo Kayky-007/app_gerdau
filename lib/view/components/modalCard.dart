@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
-import 'package:login_gerdau/model/pratos_modal.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -111,7 +110,7 @@ class _ModalCardState extends State<ModalCard> {
                   // Realize a operação assíncrona fora do setState
                   dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
                   await controller
-                      .obterDadosPratos(dia_API); // Tarefa assíncrona
+                      .obterDadosPratos(); // Tarefa assíncrona
 
                   // Agora, chame o setState para atualizar a UI
                   setState(() {
@@ -163,16 +162,7 @@ class _ModalCardState extends State<ModalCard> {
                   fontWeight: FontWeight.bold),
             ),
             ListTile(
-              title: Text('Prato principal: ',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text('${widget.pratoPrincipal}',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
-            ),
-            ListTile(
-              title: Text('Acompanhamento: ',
+              title: Text('Ingredientes: ',
                   style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,
@@ -180,46 +170,7 @@ class _ModalCardState extends State<ModalCard> {
               subtitle: Text('${widget.acompanhamento}',
                   style: TextStyle(fontSize: 18, color: Colors.black)),
             ),
-            ListTile(
-              title: Text('Sobremesa: ',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text('${widget.sobremesa}',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
-            ),
             SizedBox(height: 10),
-            DropdownButtonFormField<String>(
-              value: selectedSize,
-              decoration: InputDecoration(
-                labelText: 'Escolha o Tamanho',
-                labelStyle: TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              ),
-              style: TextStyle(color: Colors.black, fontSize: 16),
-              dropdownColor: Colors.white,
-              items: ['Pequeno', 'Médio', 'Grande']
-                  .map((size) => DropdownMenuItem(
-                        value: size,
-                        child:
-                            Text(size, style: TextStyle(color: Colors.black)),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedSize = value; // Atualiza o tamanho selecionado
-                });
-              },
-            ),
-            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -250,7 +201,6 @@ class _ModalCardState extends State<ModalCard> {
                   onPressed: () {
                     if (selectedSize != null) {
                       print('Prato escolhido: ${widget.pratoPrincipal}');
-                      print('Tamanho escolhido: $selectedSize');
                       AlertController.show(
                           "Pedido Confirmado",
                           "Seu pedido foi confirmado com sucesso!",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/controller/login_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -13,12 +14,28 @@ class InicioView extends StatefulWidget {
 class _InicioViewState extends State<InicioView> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
+  String? nomeUsuario;
+  String? emailUsuario;
+
+  final LoginController _controller = LoginController();
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
+    _carregarDadosPerfil();
+  }
+
+   Future<void> _carregarDadosPerfil() async {
+    // Recupera os dados armazenados ou da API
+    final nome = await _controller.obterNomeUsuario();
+    final email = await _controller.obterEmailUsuario();
+
+    setState(() {
+      nomeUsuario = nome;
+      emailUsuario = email;
+    });
   }
 
 
@@ -45,8 +62,8 @@ class _InicioViewState extends State<InicioView> {
                           child: Image(image: AssetImage('assets/images/redondoPerfil.jpg')),
                         ),
                         const SizedBox(width: 15),
-                        const Text(
-                          'Olá, (Nome)!',
+                         Text(
+                          'Olá, ${nomeUsuario ?? "Carregando..."}!',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -112,7 +129,7 @@ class _InicioViewState extends State<InicioView> {
                 // Cartões de resumo
                 GestureDetector(
                   onTap: () {
-                   Navigator.pushNamed(context, '/pedido');
+                   Navigator.pushNamed(context, '/pedidos');
                   },
                   child: Card(
                     color: const Color.fromARGB(255, 1, 52, 96),
