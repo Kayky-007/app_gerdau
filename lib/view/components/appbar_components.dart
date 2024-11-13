@@ -36,7 +36,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           ),
         ),
       ],
-      expandedHeight: 100.0,
+      expandedHeight: 70.0,
       floating: false,
       pinned: true,
       snap: false,
@@ -59,7 +59,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           ),
         ),
         centerTitle: false,
-        titlePadding: const EdgeInsets.only(left: 20.0, bottom: 20.0),
+        titlePadding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
         background: ClipRect(
           child: Container(
             decoration: const BoxDecoration(
