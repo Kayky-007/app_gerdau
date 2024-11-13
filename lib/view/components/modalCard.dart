@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
+import 'package:login_gerdau/controller/pratos_controller.dart';
+import 'package:login_gerdau/model/pratos_modal.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -44,21 +46,23 @@ class ModalCard extends StatefulWidget {
 class _ModalCardState extends State<ModalCard> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
-  late String tituloDia;
+  late String dia_marcado;
+  late String dia_API; // Agora será atualizado com a data selecionada
   bool visivel = false;
+  String? selectedSize;
+  PratosController controller = PratosController();
 
   @override
   void initState() {
     super.initState();
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
-    tituloDia = DateFormat('dd/MM/yyyy').format(_selectedDay);
+    dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
+    dia_API = dia_marcado; // Inicializando a variável
   }
 
   @override
   Widget build(BuildContext context) {
-    String? selectedSize;
-
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
@@ -103,13 +107,21 @@ class _ModalCardState extends State<ModalCard> {
                 lastDay: DateTime.utc(2030, 12, 31),
                 focusedDay: _focusedDay,
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) {
+                onDaySelected: (selectedDay, focusedDay) async {
+                  // Realize a operação assíncrona fora do setState
+                  dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
+                  await controller
+                      .obterDadosPratos(dia_API); // Tarefa assíncrona
+
+                  // Agora, chame o setState para atualizar a UI
                   setState(() {
                     visivel = false;
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
-                    tituloDia = DateFormat('dd/MM/yyyy').format(selectedDay);
+                    dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
                   });
+
+                  print(dia_API);
                 },
                 calendarStyle: const CalendarStyle(
                   selectedDecoration: BoxDecoration(
@@ -136,20 +148,20 @@ class _ModalCardState extends State<ModalCard> {
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
               ),
               child: Text("Datas"),
-              onPressed: () {
+              onPressed: () async {
+                // Passando a data selecionada
                 setState(() {
                   visivel = true;
                 });
               },
             ),
             EspacamentoH(h: 3),
-            Text('Dia Marcado: $tituloDia', 
-            style: TextStyle(
-              color: Color.fromARGB(255, 4, 165, 9),
-              fontWeight: FontWeight.bold
+            Text(
+              'Dia Marcado: $dia_marcado',
+              style: TextStyle(
+                  color: Color.fromARGB(255, 4, 165, 9),
+                  fontWeight: FontWeight.bold),
             ),
-            ),
-            
             ListTile(
               title: Text('Prato principal: ',
                   style: TextStyle(
@@ -197,11 +209,14 @@ class _ModalCardState extends State<ModalCard> {
               items: ['Pequeno', 'Médio', 'Grande']
                   .map((size) => DropdownMenuItem(
                         value: size,
-                        child: Text(size, style: TextStyle(color: Colors.black)),
+                        child:
+                            Text(size, style: TextStyle(color: Colors.black)),
                       ))
                   .toList(),
               onChanged: (value) {
-                selectedSize = value;
+                setState(() {
+                  selectedSize = value; // Atualiza o tamanho selecionado
+                });
               },
             ),
             SizedBox(height: 20),
@@ -236,11 +251,14 @@ class _ModalCardState extends State<ModalCard> {
                     if (selectedSize != null) {
                       print('Prato escolhido: ${widget.pratoPrincipal}');
                       print('Tamanho escolhido: $selectedSize');
+                      AlertController.show(
+                          "Pedido Confirmado",
+                          "Seu pedido foi confirmado com sucesso!",
+                          TypeAlert.success);
+                    } else {
+                      AlertController.show("Erro",
+                          "Por favor, selecione um tamanho.", TypeAlert.error);
                     }
-                    AlertController.show(
-                        "Pedido Confirmado",
-                        "Seu pedido foi confirmado com sucesso!",
-                        TypeAlert.success);
                     Navigator.of(context).pop();
                   },
                 ),
