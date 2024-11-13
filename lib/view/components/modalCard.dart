@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
+import 'package:login_gerdau/model/pratos_model.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -46,7 +47,7 @@ class _ModalCardState extends State<ModalCard> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late String dia_marcado;
-  late String dia_API; // Agora será atualizado com a data selecionada
+  late String dia_API; 
   bool visivel = false;
   String? selectedSize;
   PratosController controller = PratosController();
@@ -57,7 +58,11 @@ class _ModalCardState extends State<ModalCard> {
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
     dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
-    dia_API = dia_marcado; // Inicializando a variável
+    dia_API = dia_marcado; 
+  }
+
+  Future<PratosModel> _fetchPratosData() async {
+    return await controller.obterDadosPratos(dia_API);
   }
 
   @override
@@ -76,145 +81,178 @@ class _ModalCardState extends State<ModalCard> {
         ],
       ),
       child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              "Confirmar Pedido",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-                color: Color.fromARGB(255, 6, 71, 128),
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 15),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Image.asset(
-                widget.imagemPath,
-                height: 180,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 15),
-            Visibility(
-              visible: visivel,
-              child: TableCalendar(
-                firstDay: DateTime.utc(2020, 1, 1),
-                lastDay: DateTime.utc(2030, 12, 31),
-                focusedDay: _focusedDay,
-                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                onDaySelected: (selectedDay, focusedDay) async {
-                  // Realize a operação assíncrona fora do setState
-                  dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
-                  await controller
-                      .obterDadosPratos(); // Tarefa assíncrona
+        child: FutureBuilder<PratosModel>(
+          future: _fetchPratosData(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
 
-                  // Agora, chame o setState para atualizar a UI
-                  setState(() {
-                    visivel = false;
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                    dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
-                  });
+            if (snapshot.hasError) {
+              return Center(child: Text('Erro ao carregar os dados'));
+            }
 
-                  print(dia_API);
-                },
-                calendarStyle: const CalendarStyle(
-                  selectedDecoration: BoxDecoration(
-                    color: Colors.green,
-                    shape: BoxShape.circle,
-                  ),
-                  weekendTextStyle: TextStyle(color: Colors.red),
-                ),
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
-                  titleCentered: true,
-                  leftChevronIcon: Icon(Icons.chevron_left),
-                  rightChevronIcon: Icon(Icons.chevron_right),
-                ),
-              ),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: const Color.fromARGB(255, 58, 111, 179),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  side: BorderSide(color: Color.fromARGB(255, 58, 111, 179)),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              ),
-              child: Text("Datas"),
-              onPressed: () async {
-                // Passando a data selecionada
-                setState(() {
-                  visivel = true;
-                });
-              },
-            ),
-            EspacamentoH(h: 3),
-            Text(
-              'Dia Marcado: $dia_marcado',
-              style: TextStyle(
-                  color: Color.fromARGB(255, 4, 165, 9),
-                  fontWeight: FontWeight.bold),
-            ),
-            ListTile(
-              title: Text('Ingredientes: ',
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold)),
-              subtitle: Text('${widget.acompanhamento}',
-                  style: TextStyle(fontSize: 18, color: Colors.black)),
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            if (!snapshot.hasData) {
+              return Center(child: Text('Nenhum dado disponível'));
+            }
+
+            PratosModel pratos = snapshot.data!;
+
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Text(
+                  "Confirmar Pedido",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: Color.fromARGB(255, 6, 71, 128),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 15),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.asset(
+                    widget.imagemPath,
+                    height: 180,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                SizedBox(height: 15),
+                Visibility(
+                  visible: visivel,
+                  child: TableCalendar(
+                    firstDay: DateTime.utc(2020, 1, 1),
+                    lastDay: DateTime.utc(2030, 12, 31),
+                    focusedDay: _focusedDay,
+                    selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+                    onDaySelected: (selectedDay, focusedDay) async {
+                      dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
+                      await controller.obterDadosPratos(dia_API); 
+                      setState(() {
+                        visivel = false;
+                        _selectedDay = selectedDay;
+                        _focusedDay = focusedDay;
+                        dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
+                      });
+                    },
+                    calendarStyle: const CalendarStyle(
+                      selectedDecoration: BoxDecoration(
+                        color: Colors.green,
+                        shape: BoxShape.circle,
+                      ),
+                      weekendTextStyle: TextStyle(color: Colors.red),
+                    ),
+                    headerStyle: const HeaderStyle(
+                      formatButtonVisible: false,
+                      titleCentered: true,
+                      leftChevronIcon: Icon(Icons.chevron_left),
+                      rightChevronIcon: Icon(Icons.chevron_right),
+                    ),
+                  ),
+                ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    foregroundColor: Colors.redAccent,
+                    foregroundColor: const Color.fromARGB(255, 58, 111, 179),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
-                      side: BorderSide(color: Colors.redAccent),
+                      side: BorderSide(color: Color.fromARGB(255, 58, 111, 179)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   ),
-                  child: Text("Cancelar"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
+                  child: Text("Datas"),
+                  onPressed: () async {
+                    setState(() {
+                      visivel = true;
+                    });
                   },
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 1, 52, 96),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+                EspacamentoH(h: 3),
+                Text(
+                  'Dia Marcado: $dia_marcado',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 4, 165, 9),
+                      fontWeight: FontWeight.bold),
+                ),
+                ListTile(
+                  title: Text('Prato principal: ',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  subtitle: Text('${pratos.nomePrato}',
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                ),
+                ListTile(
+                  title: Text('Acompanhamento: ',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  subtitle: Text('${pratos.ingredientes}',
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                ),
+                ListTile(
+                  title: Text('Sobremesa: ',
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold)),
+                  subtitle: Text('${pratos.descricaoPrato}',
+                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                ),
+                
+              
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.redAccent,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                          side: BorderSide(color: Colors.redAccent),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                      child: Text("Cancelar"),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                  ),
-                  child: Text("Confirmar"),
-                  onPressed: () {
-                    if (selectedSize != null) {
-                      print('Prato escolhido: ${widget.pratoPrincipal}');
-                      AlertController.show(
-                          "Pedido Confirmado",
-                          "Seu pedido foi confirmado com sucesso!",
-                          TypeAlert.success);
-                    } else {
-                      AlertController.show("Erro",
-                          "Por favor, selecione um tamanho.", TypeAlert.error);
-                    }
-                    Navigator.of(context).pop();
-                  },
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 1, 52, 96),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      ),
+                      child: Text("Confirmar"),
+                      onPressed: () {
+                        if (selectedSize != null) {
+                          print('Prato escolhido: ${pratos.nomePrato}');
+                          print('Tamanho escolhido: $selectedSize');
+                          AlertController.show(
+                              "Pedido Confirmado",
+                              "Seu pedido foi confirmado com sucesso!",
+                              TypeAlert.success);
+                        } else {
+                          AlertController.show("Erro",
+                              "Por favor, selecione um tamanho.", TypeAlert.error);
+                        }
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );

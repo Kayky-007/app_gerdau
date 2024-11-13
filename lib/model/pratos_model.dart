@@ -34,34 +34,30 @@ class PratosModel {
     return data;
   }
 
-  static Future<PratosModel> dadosPratos(token) async {
-    TextEditingController dia_API = TextEditingController();
-    
-    final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=29/11/2024'); 
-    final response = await http.get(url, headers: {'authorization': token});
-    print(response.body[0]);
-      
-       if (response.statusCode == 200) {
-      final Map<String, dynamic> decodedJson = jsonDecode(response.body);
+ static Future<PratosModel> dadosPratos(String token, String diaAPI) async {
+  final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=$diaAPI'); 
+  final response = await http.get(url, headers: {'authorization': token});
+  print(response.body);
 
-      // Verifica se há dados na chave "dados"
-      if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
-        final dados = decodedJson['dados'] as List;
-        if (dados.isNotEmpty) {
-          // Retorna o primeiro item como PratosModel
-          return PratosModel.fromJson(dados[0]);
-        } else {
-          throw Exception('Nenhum prato encontrado.');
-        }
-      } else {
-        throw Exception('Formato de JSON inválido.');
-      }
-       //return PratosModel.fromJson(jsonDecode(response.body)as Map<String, dynamic>);
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> decodedJson = jsonDecode(response.body);
 
+    // Verifica se há dados na chave "dados"
+    if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
+      final dados = decodedJson['dados'] as List;
+      if (dados.isNotEmpty) {
+        // Retorna o primeiro item como PratosModel
+        return PratosModel.fromJson(dados[0]);
       } else {
-        throw Exception('Falha ao realizar login');
+        throw Exception('Nenhum prato encontrado.');
       }
-   }
+    } else {
+      throw Exception('Formato de JSON inválido.');
+    }
+  } else {
+    throw Exception('Falha ao realizar requisição');
+  }
+}
 
   // Método para listar prato do cardápio por dia, aceitando idPrato e dataCardapio como parâmetros
   static Future<PratosModel> listarPratoCardapioDia(String token, int idPrato, String dataCardapio) async {
