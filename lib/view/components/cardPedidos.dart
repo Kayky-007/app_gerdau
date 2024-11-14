@@ -14,7 +14,6 @@ class CardPedidos extends StatelessWidget {
   final String imagemPath;
   final int idPedido;
   final Function(int) onPedidoCancelado;
-  final void Function(int, int) onEnviarAvaliacao; // Função para enviar avaliação
 
   CardPedidos({
     super.key,
@@ -26,7 +25,6 @@ class CardPedidos extends StatelessWidget {
     required this.idPedido,
     required this.onPedidoCancelado,
     required this.idPrato,
-    required this.onEnviarAvaliacao,
   });
 
   final PedidosController _pedidosController = PedidosController();
@@ -122,131 +120,136 @@ class CardPedidos extends StatelessWidget {
   }
 
   void _showAlertPedido(BuildContext context) async {
-    try {
-      final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
-      final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados"; 
+  try {
+    final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
+    final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados"; 
 
-      final listaIngredientes = ingredientes.split(','); // Alterar para o delimitador adequado, se necessário
+    // Divida os ingredientes, assumindo que os ingredientes são separados por vírgula ou outro delimitador.
+    final listaIngredientes = ingredientes.split(','); // Alterar para o delimitador adequado, se necessário
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            backgroundColor: Colors.grey[900],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            title: Row(
-              children: [
-                Icon(
-                  Icons.info_outline,
-                  color: Color.fromRGBO(255, 204, 0, 1),
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.grey[900],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+          title: Row(
+            children: [
+              Icon(
+                Icons.info_outline,
+                color: Color.fromRGBO(255, 204, 0, 1),
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Detalhes do Pedido',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
                 ),
-                SizedBox(width: 8),
-                Text(
-                  'Detalhes do Pedido',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            content: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Ingredientes:',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(255, 204, 0, 1),
-                  ),
-                ),
-                SizedBox(height: 8),
-                ...listaIngredientes.map((ingrediente) {
-                  return Text(
-                    '- ${ingrediente.trim()}',
-                    style: TextStyle(color: Colors.white70),
-                  );
-                }).toList(),
-                SizedBox(height: 16),
-                Divider(color: Colors.white54),
-                Text(
-                  'Informações adicionais',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(255, 204, 0, 1),
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Descrição: $descricao',
-                  style: TextStyle(color: Colors.white70),
-                ),
-                Text(
-                  'Data do Agendamento: $dataAgendamento',
-                  style: TextStyle(color: Colors.white70),
-                ),
-                Text(
-                  'Data do Pedido: $dataPedido',
-                  style: TextStyle(color: Colors.white70),
-                ),
-              ],
-            ),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 24,
-                      ),
-                    ),
-                    child: Text(
-                      'Fechar',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      _showRatingDialog(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(255, 204, 0, 1),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 24,
-                      ),
-                    ),
-                    child: Text(
-                      'Avaliar',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
-                    ),
-                  ),
-                ],
               ),
             ],
-          );
-        },
-      );
-    } catch (e) {
-      print("Erro ao obter ingredientes: $e");
-    }
+          ),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Ingredientes:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(255, 204, 0, 1),
+                ),
+              ),
+              SizedBox(height: 8),
+              // Exibindo cada ingrediente em uma nova linha com prefixo "- "
+              ...listaIngredientes.map((ingrediente) {
+                return Text(
+                  '- ${ingrediente.trim()}', // Remover espaços extras com `trim()`
+                  style: TextStyle(color: Colors.white70),
+                );
+              }).toList(),
+              SizedBox(height: 16),
+              Divider(color: Colors.white54),
+              Text(
+                'Informações adicionais',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(255, 204, 0, 1),
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Descrição: $descricao',
+                style: TextStyle(color: Colors.white70),
+              ),
+              Text(
+                'Data do Agendamento: $dataAgendamento',
+                style: TextStyle(color: Colors.white70),
+              ),
+              Text(
+                'Data do Pedido: $dataPedido',
+                style: TextStyle(color: Colors.white70),
+              ),
+            ],
+          ),
+          actions: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Botão Fechar
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 24,
+                    ),
+                  ),
+                  child: Text(
+                    'Fechar',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+                SizedBox(width: 20),
+                // Botão Avaliar
+                ElevatedButton(
+                  onPressed: () {
+                    _showRatingDialog(context);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(255, 204, 0, 1), // Dourado
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12,
+                      horizontal: 24,
+                    ),
+                  ),
+                  child: Text(
+                    'Avaliar',
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  } catch (e) {
+    print("Erro ao obter ingredientes: $e");
   }
+}
+
 
   void _showRatingDialog(BuildContext context) {
     int rating = 0; // Inicializa a avaliação com 0 estrelas
@@ -300,13 +303,18 @@ class CardPedidos extends StatelessWidget {
           actions: [
             ElevatedButton(
               onPressed: () async {
-                // Chama o callback para enviar a avaliação
-                onEnviarAvaliacao(idPedido, rating);
-
-                Navigator.pop(context); // Fecha o modal de avaliação
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Avaliação enviada com sucesso!')),
-                );
+                // Envia a avaliação para a API
+                bool sucesso = await _pedidosController.enviarAvaliacao(idPedido, rating);
+                if (sucesso) {
+                  Navigator.pop(context); // Fecha o modal de avaliação
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Avaliação enviada com sucesso!')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Falha ao enviar avaliação!')),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(255, 204, 0, 1),

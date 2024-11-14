@@ -68,23 +68,6 @@ class _PedidosViewState extends State<PedidosView> {
     });
   }
 
-  void _atualizarPedidoAvaliacao(int idPedido, int notaPedido) {
-  setState(() {
-    // Atualiza o pedido original
-    final pedidoIndex = _pedidos.indexWhere((pedido) => pedido.idPedido == idPedido);
-    if (pedidoIndex != -1) {
-      _pedidos[pedidoIndex].notaPedido = notaPedido; // Atualiza a nota do pedido
-    }
-
-    // Se os pedidos filtrados incluem pedidos não avaliados, eles também devem ser atualizados
-    final pedidoFiltradoIndex = _pedidosFiltrados.indexWhere((pedido) => pedido.idPedido == idPedido);
-    if (pedidoFiltradoIndex != -1) {
-      _pedidosFiltrados[pedidoFiltradoIndex].notaPedido = notaPedido;
-    }
-  });
-}
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,7 +163,6 @@ class _PedidosViewState extends State<PedidosView> {
                                   imagemPath: 'assets/images/comida_card.png',
                                   idPedido: pedido.idPedido,
                                   onPedidoCancelado: _atualizarListaPedidos,
-                                  onEnviarAvaliacao: _atualizarPedidoAvaliacao,
                                 ),
                                 SizedBox(height: 20),
                               ],
