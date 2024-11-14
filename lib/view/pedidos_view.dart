@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/pedidos_controller.dart';
-import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/cardPedidos.dart';
 import 'package:login_gerdau/model/pedidos_model.dart';
@@ -67,6 +66,9 @@ class _PedidosViewState extends State<PedidosView> {
       }
     });
   }
+
+  
+
 
   @override
   Widget build(BuildContext context) {

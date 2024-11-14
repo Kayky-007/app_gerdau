@@ -8,7 +8,7 @@ class PedidosModel {
   final int idPedido;
   final String dataPedido;
   final String dataAgendamento;
-  final int notaPedido; // A nota do pedido (0 = não avaliado)
+  int notaPedido; // A nota do pedido (0 = não avaliado)
   final String nomePrato;
   final String descricaoPrato;
 
