@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/login_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class InicioView extends StatefulWidget {
   const InicioView({super.key});
@@ -129,7 +128,7 @@ class _InicioViewState extends State<InicioView> {
                 // Cartões de resumo
                 GestureDetector(
                   onTap: () {
-                   Navigator.pushNamed(context, '/pedidos');
+                   Navigator.pushNamed(context, '/cardapio');
                   },
                   child: Card(
                     color: const Color.fromARGB(255, 1, 52, 96),

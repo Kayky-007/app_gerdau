@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/alert_controller.dart';
 import 'package:flutter_dropdown_alert/model/data_alert.dart';
+import 'package:login_gerdau/controller/pedidos_controller.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:login_gerdau/model/pratos_model.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
@@ -30,6 +31,7 @@ class ModalCard extends StatefulWidget {
     required String acompanhamento,
     required String sobremesa,
     required String imagemPath,
+    required int idPrato,
   }) {
     showMaterialModalBottomSheet(
       context: context,
@@ -47,9 +49,10 @@ class _ModalCardState extends State<ModalCard> {
   late DateTime _focusedDay;
   late DateTime _selectedDay;
   late String dia_marcado;
-  late String dia_API; 
+  late String dia_API;
   bool visivel = false;
   String? selectedSize;
+  PedidosController controllerPedidos = PedidosController();
   PratosController controller = PratosController();
 
   @override
@@ -58,7 +61,7 @@ class _ModalCardState extends State<ModalCard> {
     _focusedDay = DateTime.now();
     _selectedDay = DateTime.now();
     dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
-    dia_API = dia_marcado; 
+    dia_API = dia_marcado;
   }
 
   Future<PratosModel> _fetchPratosData() async {
@@ -129,14 +132,15 @@ class _ModalCardState extends State<ModalCard> {
                     focusedDay: _focusedDay,
                     selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                     onDaySelected: (selectedDay, focusedDay) async {
-                      dia_API = DateFormat('dd/MM/yyyy').format(selectedDay);
-                      await controller.obterDadosPratos(dia_API); 
                       setState(() {
-                        visivel = false;
                         _selectedDay = selectedDay;
                         _focusedDay = focusedDay;
-                        dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
+                        dia_marcado =
+                            DateFormat('dd/MM/yyyy').format(selectedDay);
+                        dia_API = dia_marcado;
+                        visivel = false;
                       });
+                      await _fetchPratosData();
                     },
                     calendarStyle: const CalendarStyle(
                       selectedDecoration: BoxDecoration(
@@ -158,7 +162,8 @@ class _ModalCardState extends State<ModalCard> {
                     foregroundColor: const Color.fromARGB(255, 58, 111, 179),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
-                      side: BorderSide(color: Color.fromARGB(255, 58, 111, 179)),
+                      side:
+                          BorderSide(color: Color.fromARGB(255, 58, 111, 179)),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   ),
@@ -203,26 +208,24 @@ class _ModalCardState extends State<ModalCard> {
                   subtitle: Text('${pratos.descricaoPrato}',
                       style: TextStyle(fontSize: 18, color: Colors.black)),
                 ),
-                
-              
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     TextButton(
-                      style: TextButton.styleFrom(
-                        foregroundColor: Colors.redAccent,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          side: BorderSide(color: Colors.redAccent),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.redAccent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                            side: BorderSide(color: Colors.redAccent),
+                          ),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 12),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                      ),
-                      child: Text("Cancelar"),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                        child: Text("Cancelar"),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(255, 1, 52, 96),
@@ -230,24 +233,30 @@ class _ModalCardState extends State<ModalCard> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       ),
                       child: Text("Confirmar"),
-                      onPressed: () {
-                        if (selectedSize != null) {
-                          print('Prato escolhido: ${pratos.nomePrato}');
-                          print('Tamanho escolhido: $selectedSize');
-                          AlertController.show(
-                              "Pedido Confirmado",
-                              "Seu pedido foi confirmado com sucesso!",
-                              TypeAlert.success);
-                        } else {
-                          AlertController.show("Erro",
-                              "Por favor, selecione um tamanho.", TypeAlert.error);
-                        }
+                      onPressed: () async {
+                        // Realizar o pedido
+                        await controllerPedidos.realizarPedido(
+                          pratos.idPrato.toString(), 
+                          dia_API, 
+                        );
+
+                        
+                        AlertController.show(
+                          "Pedido Confirmado",
+                          "Seu pedido foi confirmado com sucesso!",
+                          TypeAlert.success,
+                        );
+
+
+                        // Fechar o modal
                         Navigator.of(context).pop();
+                         Navigator.pushNamed(context, '/pedidos');
                       },
-                    ),
+                    )
                   ],
                 ),
               ],

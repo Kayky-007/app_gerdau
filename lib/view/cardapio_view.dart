@@ -63,12 +63,16 @@ class _CardapioViewState extends State<CardapioView> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
+
+                      
+
                       ModalCard.showModalCard(
                         context: context,
                         pratoPrincipal: 'Bife grelhado',
                         acompanhamento: 'Arroz branco, feijão preto, batatas fritas e salada de alface e tomate',
                         sobremesa: 'Pudim de Leite',
                         imagemPath: 'assets/images/comida_card.png',
+                        idPrato: 1 // esse valor para idPrato
                       );
                     },
                     child: Card(
@@ -116,6 +120,7 @@ class _CardapioViewState extends State<CardapioView> {
                         acompanhamento: 'Pão de alho e parmesão ralado',
                         sobremesa: 'Mousse de chocolate',
                         imagemPath: 'assets/images/comida_card3.png',
+                        idPrato: 3 // esse valor para idPrato
                       );
                     },
                     child: Card(
@@ -168,6 +173,7 @@ class _CardapioViewState extends State<CardapioView> {
                         acompanhamento: 'Puré de batata com ervas finas e salada de rúcula',
                         sobremesa: 'Cheesecake de morango',
                         imagemPath: 'assets/images/comida_card2.png',
+                        idPrato: 2 // esse valor para idPrato
                       );
                     },
                     child: Card(
@@ -216,6 +222,7 @@ class _CardapioViewState extends State<CardapioView> {
                         acompanhamento: 'Legumes salteados e arroz integral',
                         sobremesa: 'Salada de frutas frescas',
                         imagemPath: 'assets/images/comida_card4.png',
+                        idPrato: 4 // esse valor para idPrato
                       );
                     },
                     child: Card(
@@ -239,7 +246,7 @@ class _CardapioViewState extends State<CardapioView> {
                                     ),
                                   ],
                                 ),
-                                Row(
+                                Row(  
                                   children: [
                                     Image.asset(
                                         'assets/images/comida_card4.png',

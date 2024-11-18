@@ -37,6 +37,19 @@ class PedidosController {
       throw Exception('Token não encontrado. O login é necessário.');
     }
   }
+
+  Future<void> realizarPedido(String idPrato, String diaAPI) async {
+    // Armazenando o token no armazenamento seguro
+    String? token = await storage.read(key: 'token');
+
+    if (token != null && token.isNotEmpty) {
+      
+      await PedidosModel.realizarPedido(idPrato, token, diaAPI);
+      
+    } else {
+      throw Exception('Token não encontrado. O login é necessário.'); 
+    }
+  }
 }
 
 
