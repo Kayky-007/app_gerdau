@@ -110,7 +110,7 @@ class _ModalCardState extends State<ModalCard> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
-                    color: Color.fromARGB(255, 6, 71, 128),
+                    color: Color.fromARGB(255, 187, 156, 82),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -228,7 +228,7 @@ class _ModalCardState extends State<ModalCard> {
                         }),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 1, 52, 96),
+                        backgroundColor: Color.fromARGB(255, 187, 156, 82),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15),
