@@ -63,9 +63,6 @@ class _CardapioViewState extends State<CardapioView> {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-
-                      
-
                       ModalCard.showModalCard(
                         context: context,
                         pratoPrincipal: 'Bife grelhado',
@@ -77,7 +74,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 1, 52, 96),
+                      color: Color.fromARGB(255, 187, 156, 82),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -86,6 +83,7 @@ class _CardapioViewState extends State<CardapioView> {
                             Column(
                               children: [
                                 const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Dia A Dia',
@@ -97,9 +95,10 @@ class _CardapioViewState extends State<CardapioView> {
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image.asset('assets/images/comida_card.png',
-                                        width: 150),
+                                    Image.asset('assets/images/cardFoto.png',
+                                        width: 120),
                                   ],
                                 ),
                               ],
@@ -125,7 +124,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 1, 52, 96),
+                      color: Color.fromARGB(255, 187, 156, 82),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -134,6 +133,7 @@ class _CardapioViewState extends State<CardapioView> {
                             Column(
                               children: [
                                 const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Clássico',
@@ -145,10 +145,11 @@ class _CardapioViewState extends State<CardapioView> {
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                        'assets/images/comida_card3.png',
-                                        width: 150),
+                                        'assets/images/cardFoto.png',
+                                        width: 120),
                                   ],
                                 ),
                               ],
@@ -178,7 +179,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 1, 52, 96),
+                      color: Color.fromARGB(255, 187, 156, 82),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -187,6 +188,7 @@ class _CardapioViewState extends State<CardapioView> {
                             Column(
                               children: [
                                 const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
                                       'Especiale',
@@ -198,10 +200,11 @@ class _CardapioViewState extends State<CardapioView> {
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Image.asset(
-                                        'assets/images/comida_card2.png',
-                                        width: 150),
+                                        'assets/images/cardFoto.png',
+                                        width: 120),
                                   ],
                                 ),
                               ],
@@ -227,7 +230,7 @@ class _CardapioViewState extends State<CardapioView> {
                     },
                     child: Card(
                       elevation: 5,
-                      color: Color.fromARGB(255, 1, 52, 96),
+                      color: Color.fromARGB(255, 187, 156, 82),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -236,6 +239,7 @@ class _CardapioViewState extends State<CardapioView> {
                             Column(
                               children: [
                                 const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center, 
                                   children: [
                                     Text(
                                       'Natural',
@@ -246,11 +250,12 @@ class _CardapioViewState extends State<CardapioView> {
                                     ),
                                   ],
                                 ),
-                                Row(  
+                                Row( 
+                                  mainAxisAlignment: MainAxisAlignment.center, 
                                   children: [
                                     Image.asset(
-                                        'assets/images/comida_card4.png',
-                                        width: 150),
+                                        'assets/images/cardFoto.png',
+                                        width: 120),
                                   ],
                                 ),
                               ],
