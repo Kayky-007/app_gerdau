@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/pedidos_controller.dart';
-import 'package:flutter_dropdown_alert/alert_controller.dart';
-import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:art_sweetalert/art_sweetalert.dart';  // Importação do pacote
 
 class CardPedidos extends StatelessWidget {
   final int idPrato;
@@ -13,8 +12,7 @@ class CardPedidos extends StatelessWidget {
   final String dataPedido;
   final String imagemPath;
   final int idPedido;
-  final Function(int) onPedidoCancelado;
-  final void Function(int, int) onEnviarAvaliacao; // Função para enviar avaliação
+  final Function(int) onPedidoCancelado; // Nova função de avaliação
 
   CardPedidos({
     super.key,
@@ -26,7 +24,6 @@ class CardPedidos extends StatelessWidget {
     required this.idPedido,
     required this.onPedidoCancelado,
     required this.idPrato,
-    required this.onEnviarAvaliacao,
   });
 
   final PedidosController _pedidosController = PedidosController();
@@ -92,10 +89,35 @@ class CardPedidos extends StatelessWidget {
                 SizedBox(width: 12),
                 ElevatedButton(
                   onPressed: () async {
-                    bool sucesso = await _pedidosController.cancelarPedido(idPedido);
-                    if (sucesso) {
-                      onPedidoCancelado(idPedido);
-                    }
+                    // Alerta de confirmação antes de cancelar o pedido
+                    ArtSweetAlert.show(
+                      context: context,
+                      artDialogArgs: ArtDialogArgs(
+                        denyButtonText: "Não",
+                        title: "Você tem certeza que deseja cancelar o pedido?",
+                        confirmButtonText: "Sim",
+                        type: ArtSweetAlertType.warning,
+                        onConfirm: () async {
+                          // Executar o cancelamento
+                          bool sucesso = await _pedidosController.cancelarPedido(idPedido);
+                          if (sucesso) {
+                            onPedidoCancelado(idPedido);
+                            Navigator.pop(context); // Fechar o alert
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Pedido cancelado com sucesso!')),
+                            );
+                          } else {
+                            Navigator.pop(context); // Fechar o alert
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('Falha ao cancelar o pedido.')),
+                            );
+                          }
+                        },
+                        onCancel: () {
+                          Navigator.pop(context); // Fechar o alert
+                        },
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
@@ -124,8 +146,9 @@ class CardPedidos extends StatelessWidget {
   void _showAlertPedido(BuildContext context) async {
     try {
       final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
-      final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados"; 
+      final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados";
 
+      // Divida os ingredientes, assumindo que os ingredientes são separados por vírgula ou outro delimitador.
       final listaIngredientes = ingredientes.split(','); // Alterar para o delimitador adequado, se necessário
 
       showDialog(
@@ -164,9 +187,10 @@ class CardPedidos extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 8),
+                // Exibindo cada ingrediente em uma nova linha com prefixo "- "
                 ...listaIngredientes.map((ingrediente) {
                   return Text(
-                    '- ${ingrediente.trim()}',
+                    '- ${ingrediente.trim()}', // Remover espaços extras com `trim()`
                     style: TextStyle(color: Colors.white70),
                   );
                 }).toList(),
@@ -198,6 +222,7 @@ class CardPedidos extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  // Botão Fechar
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -218,12 +243,13 @@ class CardPedidos extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 20),
+                  // Botão Avaliar
                   ElevatedButton(
                     onPressed: () {
                       _showRatingDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(255, 204, 0, 1),
+                      backgroundColor: Color.fromRGBO(255, 204, 0, 1), // Dourado
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -300,13 +326,20 @@ class CardPedidos extends StatelessWidget {
           actions: [
             ElevatedButton(
               onPressed: () async {
-                // Chama o callback para enviar a avaliação
-                onEnviarAvaliacao(idPedido, rating);
-
-                Navigator.pop(context); // Fecha o modal de avaliação
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Avaliação enviada com sucesso!')),
-                );
+                // Envia a avaliação para a API
+                bool sucesso = await _pedidosController.enviarAvaliacao(idPedido, rating);
+                if (sucesso) {
+                  Navigator.pop(context); // Fecha o modal de avaliação
+                  Navigator.pop(context); // Fecha o modal de detalhes do pedido
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Avaliação enviada com sucesso!')),
+                  );
+                } else {
+                  Navigator.pop(context); // Fecha o modal de avaliação
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Falha ao enviar avaliação!')),
+                  );
+                }
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(255, 204, 0, 1),

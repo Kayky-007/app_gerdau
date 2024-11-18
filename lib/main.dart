@@ -9,19 +9,15 @@ import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:page_transition/page_transition.dart';
  
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
  
   // Instanciando o FlutterSecureStorage
-
   final storage = FlutterSecureStorage();
  
   // Obtendo o token armazenado
-
   String? token = await storage.read(key: 'token');
  
   runApp(MyApp(token: token));
-
 }
  
 class MyApp extends StatelessWidget {
@@ -41,7 +37,6 @@ class MyApp extends StatelessWidget {
           foregroundColor: Colors.white,
           backgroundColor: Color.fromRGBO(1, 52, 91, 1),
         ),
-
         inputDecorationTheme: InputDecorationTheme(
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey),
@@ -56,46 +51,25 @@ class MyApp extends StatelessWidget {
           floatingLabelStyle:
               TextStyle(color: Color.fromRGBO(129, 108, 12, 1)),
         ),
-
       ),
-
       routes: {
-
         '/': (context) => AnimatedSplashScreen(
               duration: 2000,
               splash: 'assets/images/logoGRSA_splashscreen.png',
-
               nextScreen: token != null
                   ? const PainelView() // Se o token estiver presente, vai para o painel
-
                   : const LoginView(), // Caso contrário, vai para a tela de login
-
               splashTransition: SplashTransition.fadeTransition,
-
               pageTransitionType: PageTransitionType.topToBottom,
-
               splashIconSize: 150,
-
               backgroundColor: Colors.white,
-
             ),
-
         '/painel': (context) => const PainelView(),
-
         '/login': (context) => const LoginView(),
-
         '/cardapio': (context) => const CardapioView(),
-
-        '/pedidos': (context) =>  PedidosView(),
-
+        '/pedidos': (context) => const PedidosView(),
       },
-
       initialRoute: '/',
-
     );
-
   }
-
 }
-
- 

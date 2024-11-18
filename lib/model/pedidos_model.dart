@@ -90,8 +90,9 @@ class PedidosModel {
     }
   }
 
-  // Função para enviar avaliação do pedido
-  static Future<void> enviarAvaliacao(int idPedido, int notaPedido, String token, Function onSuccess) async {
+  // Função para enviar a avaliação do pedido
+// Função para enviar a avaliação do pedido
+  static Future<bool> enviarAvaliacao(int idPedido, int notaPedido, String token) async {
     try {
       final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/avaliarPedido.php');
       final response = await http.post(
@@ -102,22 +103,23 @@ class PedidosModel {
           'nota_pedido': notaPedido.toString(),
         },
       );
-
+ 
       final responseData = json.decode(response.body);
-
+ 
       if (responseData['dados']['sucesso']) {
-        onSuccess(idPedido, notaPedido);
         AlertController.show(
           "Avaliação Enviada",
           "Sua avaliação foi enviada com sucesso!",
           TypeAlert.success,
         );
+        return true;
       } else {
         AlertController.show(
           "Erro ao Enviar Avaliação",
           responseData['dados']['mensagem'] ?? "Houve um erro ao tentar enviar a avaliação.",
           TypeAlert.error,
         );
+        return false;
       }
     } catch (e) {
       AlertController.show(
@@ -125,9 +127,9 @@ class PedidosModel {
         "Ocorreu um erro ao tentar se conectar ao servidor.",
         TypeAlert.error,
       );
+      return false;
     }
   }
-
   // Função para realizar pedido
  static Future realizarPedido(String idPrato, String token, String diaAPI) async {
     final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/realizarPedido.php');
@@ -174,6 +176,7 @@ class PedidosModel {
         "Ocorreu um erro ao tentar se conectar ao servidor.",
         TypeAlert.error,
       );
+      return false;
     }
   }
 }
