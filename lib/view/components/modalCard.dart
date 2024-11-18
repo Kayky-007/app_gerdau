@@ -64,7 +64,7 @@ class _ModalCardState extends State<ModalCard> {
     dia_API = dia_marcado;
   }
 
-  Future<PratosModel> _fetchPratosData() async {
+  Future<PratosModel?> _fetchPratosData() async {
     return await controller.obterDadosPratos(dia_API);
   }
 
@@ -84,7 +84,7 @@ class _ModalCardState extends State<ModalCard> {
         ],
       ),
       child: SingleChildScrollView(
-        child: FutureBuilder<PratosModel>(
+        child: FutureBuilder<PratosModel?>(
           future: _fetchPratosData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -167,7 +167,7 @@ class _ModalCardState extends State<ModalCard> {
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   ),
-                  child: Text("Datas"),
+                  child: Text("Agendar Pedido"),
                   onPressed: () async {
                     setState(() {
                       visivel = true;
@@ -254,7 +254,6 @@ class _ModalCardState extends State<ModalCard> {
 
                         // Fechar o modal
                         Navigator.of(context).pop();
-                         Navigator.pushNamed(context, '/pedidos');
                       },
                     )
                   ],

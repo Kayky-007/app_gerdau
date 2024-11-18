@@ -23,6 +23,11 @@ class _PedidosViewState extends State<PedidosView> {
   void initState() {
     super.initState();
     _carregarPedidos();
+    PedidosView();
+_pedidos;
+_pedidosFiltrados;
+
+  
   }
 
   Future<void> _carregarPedidos() async {
@@ -37,7 +42,7 @@ class _PedidosViewState extends State<PedidosView> {
       setState(() {
         _isLoading = false;
       });
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro ao carregar os pedidos")));
+   
     }
   }
 

@@ -103,14 +103,10 @@ class CardPedidos extends StatelessWidget {
                           if (sucesso) {
                             onPedidoCancelado(idPedido);
                             Navigator.pop(context); // Fechar o alert
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Pedido cancelado com sucesso!')),
-                            );
+                           
                           } else {
                             Navigator.pop(context); // Fechar o alert
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Falha ao cancelar o pedido.')),
-                            );
+                        
                           }
                         },
                         onCancel: () {
@@ -331,14 +327,10 @@ class CardPedidos extends StatelessWidget {
                 if (sucesso) {
                   Navigator.pop(context); // Fecha o modal de avaliação
                   Navigator.pop(context); // Fecha o modal de detalhes do pedido
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Avaliação enviada com sucesso!')),
-                  );
+                
                 } else {
                   Navigator.pop(context); // Fecha o modal de avaliação
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Falha ao enviar avaliação!')),
-                  );
+                
                 }
               },
               style: ElevatedButton.styleFrom(

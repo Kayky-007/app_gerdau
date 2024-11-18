@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:http/http.dart' as http;
 
 class PratosModel {
@@ -34,34 +36,42 @@ class PratosModel {
     return data;
   }
 
- static Future<PratosModel> dadosPratos(String token, String diaAPI) async {
-  final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=$diaAPI'); 
-  final response = await http.get(url, headers: {'authorization': token});
-  print(response.body);
+  static Future<PratosModel?> dadosPratos(String token, String diaAPI) async {
+    final url = Uri.parse(
+        'http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarCardapioPorDia.php?data_cardapio=$diaAPI');
+    final response = await http.get(url, headers: {'authorization': token});
+    print(response.body);
+    final mensagem = json.decode(response.body);
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodedJson = jsonDecode(response.body);
 
-  if (response.statusCode == 200) {
-    final Map<String, dynamic> decodedJson = jsonDecode(response.body);
-
-    // Verifica se há dados na chave "dados"
-    if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
-      final dados = decodedJson['dados'] as List;
-      if (dados.isNotEmpty) {
-        // Retorna o primeiro item como PratosModel
-        return PratosModel.fromJson(dados[0]);
+      // Verifica se há dados na chave "dados"
+      if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
+        final dados = decodedJson['dados'] as List;
+        if (dados.isNotEmpty) {
+          // Retorna o primeiro item como PratosModel
+          return PratosModel.fromJson(dados[0]);
+        } else {
+          print(mensagem);
+          return mensagem;
+        }
       } else {
-        throw Exception('Nenhum prato encontrado.');
+         AlertController.show(
+          "Realizar Pedido",
+          mensagem[1] ?? "Não há pratos cadastrados para esse dia",
+          TypeAlert.error,
+        );
       }
     } else {
-      throw Exception('Formato de JSON inválido.');
+      throw Exception('Falha ao realizar requisição');
     }
-  } else {
-    throw Exception('Falha ao realizar requisição');
   }
-}
 
   // Método para listar prato do cardápio por dia, aceitando idPrato e dataCardapio como parâmetros
-  static Future<PratosModel> listarPratoCardapioDia(String token, int idPrato, String dataCardapio) async {
-    final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarPratoCardapioDia.php');
+  static Future<PratosModel> listarPratoCardapioDia(
+      String token, int idPrato, String dataCardapio) async {
+    final url = Uri.parse(
+        'http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarPratoCardapioDia.php');
     final response = await http.post(
       url,
       headers: {'authorization': token},
