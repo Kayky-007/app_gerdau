@@ -48,7 +48,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: Color.fromRGBO(255, 204, 0, 1),
+            color: Colors.white,
             shadows: [
               Shadow(
                 blurRadius: 13.0,
@@ -64,12 +64,12 @@ class AppbarfotoComponents extends StatelessWidget  {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/gerdau1.jpg"),
+                image: AssetImage("assets/images/gd2.jpg"),
                 fit: BoxFit.fill,
               ),
             ),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              filter: ImageFilter.blur(sigmaX: 3.0, sigmaY: 3.0),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.black.withOpacity(0.5),

@@ -50,7 +50,7 @@ class _CardapioViewState extends State<CardapioView> {
                   width: cont_pagina == index ? 20 : 10,
                   decoration: BoxDecoration(
                     color: cont_pagina == index
-                        ? Colors.blue
+                        ? Color.fromARGB(255, 187, 156, 82)
                         : Colors.grey,
                     borderRadius: BorderRadius.circular(12),
                   ),
