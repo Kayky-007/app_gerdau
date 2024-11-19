@@ -64,7 +64,7 @@ class AppbarfotoComponents extends StatelessWidget  {
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/gd2.jpg"),
+                image: AssetImage("assets/images/gd2.png"),
                 fit: BoxFit.fill,
               ),
             ),
