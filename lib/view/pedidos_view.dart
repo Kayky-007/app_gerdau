@@ -6,7 +6,8 @@ import 'package:login_gerdau/model/pedidos_model.dart';
 import 'package:intl/intl.dart';
 
 class PedidosView extends StatefulWidget {
-  const PedidosView({super.key});
+  const PedidosView({super.key, this.passback});
+  final Function? passback;
 
   @override
   State<PedidosView> createState() => _PedidosViewState();
@@ -53,6 +54,22 @@ _pedidosFiltrados;
     });
   }
 
+  void _atualizarAvaliacaoPedido(int idPedido, int novaNota) {
+    setState(() {
+      final pedidoIndex = _pedidos.indexWhere((pedido) => pedido.idPedido == idPedido);
+      if (pedidoIndex != -1) {
+        _pedidos[pedidoIndex].notaPedido = novaNota;
+      }
+
+      // Se os pedidos filtrados estão visíveis (pedidos não avaliados), atualiza também a lista filtrada.
+      if (_exibirPedidosNaoAvaliados) {
+        _pedidosFiltrados = _pedidos.where((pedido) => pedido.notaPedido == 0).toList();
+      } else {
+        _pedidosFiltrados = _pedidos;
+      }
+    });
+  }
+
   // Função para formatar a data
   String formatarData(String data) {
     DateTime dateTime = DateTime.parse(data);
@@ -71,9 +88,6 @@ _pedidosFiltrados;
       }
     });
   }
-
-  
-
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +113,7 @@ _pedidosFiltrados;
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
-                            color: !_exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent, 
+                            color: !_exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent,
                             width: 2, // Espessura da borda
                           ),
                         ),
@@ -108,7 +122,7 @@ _pedidosFiltrados;
                         'Todos os Pedidos',
                         style: TextStyle(
                           color: !_exibirPedidosNaoAvaliados ? Colors.black : Colors.grey,
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -122,7 +136,7 @@ _pedidosFiltrados;
                       decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
-                            color: _exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent, 
+                            color: _exibirPedidosNaoAvaliados ? Colors.amber : Colors.transparent,
                             width: 2, // Espessura da borda
                           ),
                         ),
@@ -131,7 +145,7 @@ _pedidosFiltrados;
                         'Pedidos Não Avaliados',
                         style: TextStyle(
                           color: _exibirPedidosNaoAvaliados ? Colors.black : Colors.grey,
-                          fontSize: 16,
+                          fontSize: 15,
                         ),
                       ),
                     ),
@@ -166,10 +180,15 @@ _pedidosFiltrados;
                                   nomePrato: pedido.nomePrato,
                                   descricao: pedido.descricaoPrato,
                                   dataAgendamento: dataAgendamentoFormatada,
+                                  notaPedido: pedido.notaPedido,
                                   dataPedido: dataPedidoFormatada,
                                   imagemPath: 'assets/images/comida_card.png',
                                   idPedido: pedido.idPedido,
                                   onPedidoCancelado: _atualizarListaPedidos,
+                                  onAvaliarPedido: (int idPedido) {
+                                    // Chama _atualizarAvaliacaoPedido com a nota predeterminada
+                                    _atualizarAvaliacaoPedido(idPedido, 5); // Exemplo: Atualizar nota para 5
+                                  },
                                 ),
                                 SizedBox(height: 20),
                               ],
@@ -178,6 +197,22 @@ _pedidosFiltrados;
                         ),
                       ),
           ],
+        ),
+      ),
+      // FloatingActionButton posicionado no canto inferior direito
+      floatingActionButton: Positioned(
+        bottom: 16,
+        right: 16,
+        child: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              _carregarPedidos();
+              _filtrarPedidos(false);
+            });
+          },
+          backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+          foregroundColor: Colors.white,
+          child: Icon(Icons.restart_alt),
         ),
       ),
     );

@@ -10,7 +10,6 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  bool _rememberMe = false;
   bool _isLoading = false; // Para mostrar o indicador de carregamento
   LoginController _controller = LoginController();
 
@@ -112,35 +111,6 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ),
                         EspacamentoH(h: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Esqueci minha senha',
-                                style: TextStyle(
-                                    color: Colors.black54,
-                                    decoration: TextDecoration.underline),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Text('Lembrar-me'),
-                                Checkbox(
-                                  value: _rememberMe,
-                                  activeColor: Color.fromRGBO(129, 108, 12, 1),
-                                  onChanged: (bool? value) {
-                                    setState(() {
-                                      _rememberMe = value!;
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        EspacamentoH(h: 15),
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(

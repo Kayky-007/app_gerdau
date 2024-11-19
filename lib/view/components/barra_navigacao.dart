@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_gerdau/controller/pedidos_controller.dart';
+import 'package:login_gerdau/model/pedidos_model.dart';
 import 'package:login_gerdau/view/avaliacao_view.dart';
 import 'package:login_gerdau/view/cardapio_view.dart';
 // <<<<<<< HEAD:lib/views/components/barra_navigacao.dart
@@ -9,19 +11,22 @@ import 'package:login_gerdau/view/cardapio_view.dart';
 import 'package:login_gerdau/view/inicio_view.dart';
 import 'package:login_gerdau/view/pedidos_view.dart';
 import 'package:login_gerdau/view/perfil_view.dart';
- 
+
 class BarraNavigacao extends StatefulWidget {
-  const BarraNavigacao({super.key});
- 
+  BarraNavigacao({super.key});
+
   @override
   State<BarraNavigacao> createState() => _BarraNavigacaoState();
 }
- 
+
 class _BarraNavigacaoState extends State<BarraNavigacao> {
   int currentPageIndex = 0;
- 
+
+  
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: IndexedStack(
         index: currentPageIndex,
@@ -40,17 +45,20 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
           ),
         ],
       ),
-      bottomNavigationBar: NavigationBarTheme( // 'Envelopa' o Navigation Bar, foi usado pra trocar a cor do texto
+      bottomNavigationBar: NavigationBarTheme(
+        // 'Envelopa' o Navigation Bar, foi usado pra trocar a cor do texto
         data: NavigationBarThemeData(
-          labelTextStyle: WidgetStatePropertyAll(  
-            TextStyle(color: Colors.white,
-            fontWeight: FontWeight.bold)  // Deixa qualquer texto da navigation bar com a cor branca
-          )
-        ),
-        child: NavigationBar(  // Navigation Bar, ATENÇÃO, ta sendo usado o Navigation Bar aqui, não o BottomNavigationBar
+            labelTextStyle: WidgetStatePropertyAll(TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight
+                        .bold) // Deixa qualquer texto da navigation bar com a cor branca
+                )),
+        child: NavigationBar(
+          // Navigation Bar, ATENÇÃO, ta sendo usado o Navigation Bar aqui, não o BottomNavigationBar
           onDestinationSelected: (int index) {
             setState(() {
               currentPageIndex = index;
+              
             });
           },
           backgroundColor: Color.fromRGBO(129, 108, 12, 1),
@@ -61,12 +69,9 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               icon: Icon(
                 Icons.home_outlined,
                 color: Colors.white,
-                ),
+              ),
               label: 'Inicio',
-              selectedIcon: Icon(
-                Icons.home,
-                color: Colors.white
-                ),
+              selectedIcon: Icon(Icons.home, color: Colors.white),
             ),
             NavigationDestination(
               icon: Icon(
@@ -83,26 +88,26 @@ class _BarraNavigacaoState extends State<BarraNavigacao> {
               icon: Icon(
                 Icons.shopping_cart_outlined,
                 color: Colors.white,
-                ),
-                selectedIcon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.white,
-                  ),
+              ),
+              selectedIcon: Icon(
+                Icons.shopping_cart,
+                color: Colors.white,
+              ),
               label: 'Pedidos',
             ),
             NavigationDestination(
               icon: Icon(
                 Icons.account_circle_outlined,
                 color: Colors.white,
-                ),
-                selectedIcon: Icon(
-                  Icons.account_circle,
-                  color: Colors.white,
-                  ),
+              ),
+              selectedIcon: Icon(
+                Icons.account_circle,
+                color: Colors.white,
+              ),
               label: 'Perfil',
             ),
           ],
-        ),    
+        ),
       ),
     );
   }

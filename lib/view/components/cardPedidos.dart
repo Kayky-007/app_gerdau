@@ -3,7 +3,7 @@ import 'package:login_gerdau/controller/pedidos_controller.dart';
 import 'package:login_gerdau/controller/pratos_controller.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:art_sweetalert/art_sweetalert.dart';  // Importação do pacote
-
+ 
 class CardPedidos extends StatelessWidget {
   final int idPrato;
   final String nomePrato;
@@ -12,8 +12,10 @@ class CardPedidos extends StatelessWidget {
   final String dataPedido;
   final String imagemPath;
   final int idPedido;
-  final Function(int) onPedidoCancelado; // Nova função de avaliação
-
+  final int notaPedido; // Nota inicial
+  final Function(int) onPedidoCancelado;
+  final Function(int) onAvaliarPedido; // Callback para atualizar a avaliação
+ 
   CardPedidos({
     super.key,
     required this.nomePrato,
@@ -24,11 +26,13 @@ class CardPedidos extends StatelessWidget {
     required this.idPedido,
     required this.onPedidoCancelado,
     required this.idPrato,
+    required this.notaPedido,
+    required this.onAvaliarPedido,
   });
-
+ 
   final PedidosController _pedidosController = PedidosController();
   final PratosController _pratosController = PratosController();
-
+ 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -82,6 +86,23 @@ class CardPedidos extends StatelessWidget {
                       Text(
                         'Data Agendamento: $dataAgendamento',
                         style: TextStyle(color: Colors.white, fontSize: 12),
+                      ),
+                      SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          SizedBox(width: 4),
+                          Text(
+                            '$notaPedido/5', // Exibe a avaliação
+                            style: TextStyle(
+                              color: Colors.amber,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -138,15 +159,15 @@ class CardPedidos extends StatelessWidget {
       ),
     );
   }
-
+ 
   void _showAlertPedido(BuildContext context) async {
     try {
       final prato = await _pratosController.listarPratoCardapioDia(idPrato, dataAgendamento);
       final ingredientes = prato.ingredientes ?? "Ingredientes não encontrados";
-
+ 
       // Divida os ingredientes, assumindo que os ingredientes são separados por vírgula ou outro delimitador.
       final listaIngredientes = ingredientes.split(','); // Alterar para o delimitador adequado, se necessário
-
+ 
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -269,10 +290,10 @@ class CardPedidos extends StatelessWidget {
       print("Erro ao obter ingredientes: $e");
     }
   }
-
+ 
   void _showRatingDialog(BuildContext context) {
-    int rating = 0; // Inicializa a avaliação com 0 estrelas
-
+    int rating = notaPedido; // Inicializa a avaliação com a nota atual
+ 
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -325,6 +346,8 @@ class CardPedidos extends StatelessWidget {
                 // Envia a avaliação para a API
                 bool sucesso = await _pedidosController.enviarAvaliacao(idPedido, rating);
                 if (sucesso) {
+                  // Atualiza a avaliação no CardPedidos
+                  onAvaliarPedido(rating);  // Atualiza a avaliação no widget pai
                   Navigator.pop(context); // Fecha o modal de avaliação
                   Navigator.pop(context); // Fecha o modal de detalhes do pedido
                 
