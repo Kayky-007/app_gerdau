@@ -79,7 +79,7 @@ class _InicioViewState extends State<InicioView> {
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 1, 52, 96),
+                    color: const Color.fromARGB(255, 126, 112, 51),
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
@@ -121,7 +121,7 @@ class _InicioViewState extends State<InicioView> {
                   'Aqui está um resumo do seu dia:',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
+                    color: Color.fromARGB(255, 73, 73, 73)
                   ),
                 ),
                 EspacamentoH(h: 12),                    
@@ -131,15 +131,15 @@ class _InicioViewState extends State<InicioView> {
                    Navigator.pushNamed(context, '/cardapio');
                   },
                   child: Card(
-                    color: const Color.fromARGB(255, 1, 52, 96),
+                    color: Color.fromARGB(255, 187, 156, 82),
                     elevation: 4,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: const ListTile(
-                      leading: Icon(Icons.fastfood_rounded, color: Color.fromARGB(255, 255, 46, 46)),
-                      title: Text('Bora almoçar?', style: TextStyle(color: Color.fromRGBO(255, 204, 0, 1))),
-                      subtitle: Text('Faça seu pedido agora mesmo!', style: TextStyle(color: Colors.white)),
+                      leading: Icon(Icons.fastfood_rounded, color: Color.fromARGB(255, 255, 255, 255)),
+                      title: Text('Bora almoçar?', style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
+                      subtitle: Text('Faça seu pedido agora mesmo!', style: TextStyle(color: Colors.white70)),
                       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
                     ),
                   ),
@@ -147,30 +147,30 @@ class _InicioViewState extends State<InicioView> {
                     
                 EspacamentoH(h: 20),
                 Card(
-                  color: const Color.fromARGB(255, 1, 52, 96),
+                  color: Color.fromARGB(255, 187, 156, 82),
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const ListTile(
-                    leading: Icon(Icons.shopping_cart, color: Colors.blueAccent),
-                    title: Text('Último Pedido', style: TextStyle(color: Color.fromRGBO(255, 204, 0, 1))),
-                    subtitle: Text('Frango Frito - 12:43 PM', style: TextStyle(color: Colors.white)),
+                    leading: Icon(Icons.shopping_cart, color: Color.fromARGB(255, 255, 255, 255)),
+                    title: Text('Último Pedido', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1))),
+                    subtitle: Text('Frango Frito - 12:43 PM', style: TextStyle(color: Colors.white70)),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
                   ),
                 ),
                     
                 EspacamentoH(h: 16),
                 Card(
-                  color: const Color.fromARGB(255, 1, 52, 96),
+                  color: Color.fromARGB(255, 187, 156, 82),
                   elevation: 4,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const ListTile(
-                    leading: Icon(Icons.star, color: Color.fromARGB(255, 255, 196, 46)),
-                    title: Text('Avaliações', style: TextStyle(color: Color.fromRGBO(255, 204, 0, 1))),
-                    subtitle: Text('Avalie o serviço e a comida!', style: TextStyle(color: Colors.white)),
+                    leading: Icon(Icons.star, color: Color.fromARGB(255, 255, 255, 255)),
+                    title: Text('Avaliações', style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1))),
+                    subtitle: Text('Avalie o serviço e a comida!', style: TextStyle(color: Colors.white70)),
                     trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
                   ),
                 ),
