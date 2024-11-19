@@ -10,16 +10,20 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:intl/intl.dart';
 
 class ModalCard extends StatefulWidget {
+  final String nomePrato;
   final String pratoPrincipal;
   final String acompanhamento;
   final String sobremesa;
   final String imagemPath;
+  final int idPrato;
 
   ModalCard({
     required this.pratoPrincipal,
     required this.acompanhamento,
     required this.sobremesa,
-    required this.imagemPath,
+    required this.imagemPath, 
+    required this.idPrato, 
+    required this.nomePrato,
   });
 
   @override
@@ -32,6 +36,7 @@ class ModalCard extends StatefulWidget {
     required String sobremesa,
     required String imagemPath,
     required int idPrato,
+    required String nomePrato,
   }) {
     showMaterialModalBottomSheet(
       context: context,
@@ -39,7 +44,9 @@ class ModalCard extends StatefulWidget {
         pratoPrincipal: pratoPrincipal,
         acompanhamento: acompanhamento,
         sobremesa: sobremesa,
-        imagemPath: imagemPath,
+        imagemPath: imagemPath, 
+        idPrato: idPrato, 
+        nomePrato: nomePrato,
       ),
     );
   }
@@ -65,7 +72,9 @@ class _ModalCardState extends State<ModalCard> {
   }
 
   Future<PratosModel?> _fetchPratosData() async {
-    return await controller.obterDadosPratos(dia_API);
+    return await controller.obterDadosPratos(
+      dia_API,
+    );
   }
 
   @override
@@ -106,7 +115,8 @@ class _ModalCardState extends State<ModalCard> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Confirmar Pedido",
+                  "Confirmar Pedido \n (Hoje)" ??
+                      "Confirmar Pedido \n (${DateFormat('dd/MM/yyyy').format(_selectedDay)})",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
@@ -140,7 +150,7 @@ class _ModalCardState extends State<ModalCard> {
                         dia_API = dia_marcado;
                         visivel = false;
                       });
-                      await _fetchPratosData();
+                      await controller.obterDadosPratoDia(context, dia_API, widget.idPrato);
                     },
                     calendarStyle: const CalendarStyle(
                       selectedDecoration: BoxDecoration(
@@ -175,38 +185,40 @@ class _ModalCardState extends State<ModalCard> {
                   },
                 ),
                 EspacamentoH(h: 3),
-                Text(
-                  'Dia Marcado: $dia_marcado',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 4, 165, 9),
-                      fontWeight: FontWeight.bold),
-                ),
                 ListTile(
-                  title: Text('Prato principal: ',
+                  title: Text('Buffet: ',
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                           fontWeight: FontWeight.bold)),
-                  subtitle: Text('${pratos.nomePrato}',
+                  subtitle: Text(widget.nomePrato,
                       style: TextStyle(fontSize: 18, color: Colors.black)),
                 ),
                 ListTile(
-                  title: Text('Acompanhamento: ',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  subtitle: Text('${pratos.ingredientes}',
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
-                ),
-                ListTile(
-                  title: Text('Sobremesa: ',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                  subtitle: Text('${pratos.descricaoPrato}',
-                      style: TextStyle(fontSize: 18, color: Colors.black)),
+                  title: Text(
+                    'Acompanhamento:',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: pratos.ingredientes != null
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: pratos.ingredientes!
+                              .split(',')
+                              .map((ingrediente) => Text(
+                                    '- ${ingrediente.trim()}',
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.black),
+                                  ))
+                              .toList(),
+                        )
+                      : Text(
+                          'Ingredientes não encontrados',
+                          style: TextStyle(fontSize: 16, color: Colors.red),
+                        ),
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -240,17 +252,15 @@ class _ModalCardState extends State<ModalCard> {
                       onPressed: () async {
                         // Realizar o pedido
                         await controllerPedidos.realizarPedido(
-                          pratos.idPrato.toString(), 
-                          dia_API, 
+                          pratos.idPrato.toString(),
+                          dia_API,
                         );
 
-                        
                         AlertController.show(
                           "Pedido Confirmado",
                           "Seu pedido foi confirmado com sucesso!",
                           TypeAlert.success,
                         );
-
 
                         // Fechar o modal
                         Navigator.of(context).pop();

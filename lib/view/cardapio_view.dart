@@ -64,6 +64,7 @@ class _CardapioViewState extends State<CardapioView> {
                   child: GestureDetector(
                     onTap: () {
                       ModalCard.showModalCard(
+                        nomePrato: 'Dia a Dia',
                         context: context,
                         pratoPrincipal: 'Bife grelhado',
                         acompanhamento: 'Arroz branco, feijão preto, batatas fritas e salada de alface e tomate',
@@ -86,7 +87,7 @@ class _CardapioViewState extends State<CardapioView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      'Dia A Dia',
+                                      'Dia a Dia',
                                       style: TextStyle(
                                           fontSize: 22,
                                           fontWeight: FontWeight.bold,
@@ -115,6 +116,7 @@ class _CardapioViewState extends State<CardapioView> {
                     onTap: () {
                       ModalCard.showModalCard(
                         context: context,
+                        nomePrato: 'Clássico',
                         pratoPrincipal: 'Esparguete à bolonhesa',
                         acompanhamento: 'Pão de alho e parmesão ralado',
                         sobremesa: 'Mousse de chocolate',
@@ -170,6 +172,7 @@ class _CardapioViewState extends State<CardapioView> {
                     onTap: () {
                       ModalCard.showModalCard(
                         context: context,
+                        nomePrato: 'Especiale',
                         pratoPrincipal: 'Costeletas de porco grelhadas',
                         acompanhamento: 'Puré de batata com ervas finas e salada de rúcula',
                         sobremesa: 'Cheesecake de morango',
@@ -221,6 +224,7 @@ class _CardapioViewState extends State<CardapioView> {
                     onTap: () {
                       ModalCard.showModalCard(
                         context: context,
+                        nomePrato: 'Natural',
                         pratoPrincipal: 'Frango grelhado com ervas',
                         acompanhamento: 'Legumes salteados e arroz integral',
                         sobremesa: 'Salada de frutas frescas',

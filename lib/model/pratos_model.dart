@@ -60,13 +60,59 @@ class PratosModel {
           "Realizar Pedido",
           mensagem[1] ?? "Não há pratos cadastrados para esse dia",
           TypeAlert.error,
+          //  Navigator.pop();
         );
+         
       }
     } else {
       throw Exception('Falha ao realizar requisição');
     }
   }
 
+static Future<PratosModel?> dadosPratosPorDia(
+    BuildContext context, String token, String diaAPI, int idPrato) async {
+  final url = Uri.parse(
+      'http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarPratoCardapioDia.php');
+  final response = await http.post(
+    url,
+    headers: {'authorization': token},
+    body: {
+      'data_cardapio': diaAPI.toString(),
+      'id_prato': idPrato.toString(),
+    },
+  );
+  final mensagem = json.decode(response.body);
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> decodedJson = jsonDecode(response.body);
+
+    // Verifica se há dados na chave "dados"
+    if (decodedJson.containsKey('dados') && decodedJson['dados'] is List) {
+      final dados = decodedJson['dados'] as List;
+      if (dados.isNotEmpty) {
+        // Retorna o primeiro item como PratosModel
+        return PratosModel.fromJson(dados[0]);
+      } else {
+        print(mensagem);
+        return null; // Retorna null se não há pratos
+      }
+    } else {
+      AlertController.show(
+        "Realizar Pedido",
+        mensagem[1] ?? "Não há pratos cadastrados para esse dia",
+        TypeAlert.error,
+      );
+
+      // Adiciona um atraso para exibir o alerta antes de fechar a página
+      Future.delayed(Duration(milliseconds: 500), () {
+        Navigator.pop(context);
+      });
+      return null; // Retorna null se não há dados válidos
+    }
+  } else {
+    throw Exception('Falha ao realizar requisição');
+  }
+}
   // Método para listar prato do cardápio por dia, aceitando idPrato e dataCardapio como parâmetros
   static Future<PratosModel> listarPratoCardapioDia(
       String token, int idPrato, String dataCardapio) async {
@@ -104,3 +150,5 @@ class PratosModel {
     }
   }
 }
+
+
