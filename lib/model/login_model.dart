@@ -29,7 +29,7 @@ class LoginModel {
 
       // Realizando a requisição POST com o formato de formulário
       final response = await http.post(
-        Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/loginPorChapa.php'),
+        Uri.parse('http://192.168.0.72/api-gerdau/endpoints/loginPorChapa.php'),
         body: body, // Corpo no formato x-www-form-urlencoded
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded', // Cabeçalho indicando que o corpo é 'x-www-form-urlencoded'
@@ -37,8 +37,8 @@ class LoginModel {
       );
 
       // Log de status da resposta
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
+      // print('Response status: ${response.statusCode}');
+      // print('Response body: ${response.body}');
 
       // Verificando se a resposta foi bem-sucedida (status 200)
       if (response.statusCode == 200) {
@@ -47,7 +47,7 @@ class LoginModel {
           Map<String, dynamic> resposta = jsonDecode(response.body);
 
           // Log da resposta decodificada
-          print('Resposta da API (decodificada): $resposta');
+          // print('Resposta da API (decodificada): $resposta');
 
           // Verificando se o login foi bem-sucedido e se o token está presente
           if (resposta['sucesso'] == true) {

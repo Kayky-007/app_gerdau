@@ -7,55 +7,75 @@ import 'package:login_gerdau/model/pratos_model.dart';
 class PratosController {
   FlutterSecureStorage storage = FlutterSecureStorage();
 
-  // Método para obter dados de pratos usando o token armazenado e o dia
-  Future<PratosModel?> obterDadosPratos(String diaAPI) async {
-    // Recupera o token do armazenamento seguro
-    String? token = await storage.read(key: 'token');
+  // // Método para obter dados de pratos usando o token armazenado e o dia
+  // Future<PratosModel?> obterDadosPratos(String diaAPI) async {
+  //   // Recupera o token do armazenamento seguro
+  //   String? token = await storage.read(key: 'token');
 
-    // Verifica se o token está disponível
-    if (token != null && token.isNotEmpty) {
-      // Usa o token e o diaAPI para buscar os dados dos pratos
-      PratosModel? pratosModel = await PratosModel.dadosPratos(token, diaAPI,);
-      return pratosModel;
-    } else {
-      throw Exception('É necessário fazer login.');
-    }
-  }
+  //   // Verifica se o token está disponível
+  //   if (token != null && token.isNotEmpty) {
+  //     // Usa o token e o diaAPI para buscar os dados dos pratos
+  //     PratosModel? pratosModel = await PratosModel.dadosPratos(token, diaAPI,);
+  //     return pratosModel;
+  //   } else {
+  //     throw Exception('É necessário fazer login.');
+  //   }
+  // }
 
-  Future<PratosModel?> obterDadosPratoDia(
-      BuildContext context, String diaAPI, int idPrato) async {
+  Future<PratosModel?> obterDadosPratoPorDia(String diaAPI, int idPrato) async {
+  // Recupera o token do armazenamento seguro
+  String? token = await storage.read(key: 'token');
+
+  // Verifica se o token está disponível
+  if (token != null && token.isNotEmpty) {
     try {
-      // Recupera o token do armazenamento seguro
-      String? token = await storage.read(key: 'token');
-
-      // Verifica se o token está disponível
-      if (token != null && token.isNotEmpty) {
-        // Usa o token e o diaAPI para buscar os dados dos pratos
-        PratosModel? pratosModel =
-            await PratosModel.dadosPratosPorDia(context, token, diaAPI, idPrato);
-
-        if (pratosModel == null) {
-          // Mostra um alerta caso nenhum prato seja encontrado
-          AlertController.show(
-            "Erro",
-            "Nenhum prato encontrado para a data selecionada.",
-            TypeAlert.error,
-          );
-        }
-        return pratosModel;
-      } else {
-        throw Exception('É necessário fazer login.');
-      }
+      // Usa o token e o diaAPI para buscar os dados dos pratos
+      PratosModel? pratosModel = await PratosModel.dadosPratoPorDiaGet(token, diaAPI, idPrato);
+      return pratosModel;
     } catch (e) {
-      // Lida com erros gerais
-      AlertController.show(
-        "Erro",
-        e.toString(),
-        TypeAlert.error,
-      );
-      return null;
+      // Lida com qualquer erro durante a requisição
+      throw Exception('Erro ao buscar dados: $e');
     }
+  } else {
+    // Caso o token não esteja disponível ou seja inválido
+    throw Exception('É necessário fazer login.');
   }
+}
+
+  // Future<PratosModel?> obterDadosPratoDia(
+  //     BuildContext context, String diaAPI, int idPrato) async {
+  //   try {
+  //     // Recupera o token do armazenamento seguro
+  //     String? token = await storage.read(key: 'token');
+
+  //     // Verifica se o token está disponível
+  //     if (token != null && token.isNotEmpty) {
+  //       // Usa o token e o diaAPI para buscar os dados dos pratos
+  //       PratosModel? pratosModel =
+  //           await PratosModel.dadosPratosPorDia(context, token, diaAPI, idPrato);
+
+  //       if (pratosModel == null) {
+  //         // Mostra um alerta caso nenhum prato seja encontrado
+  //         AlertController.show(
+  //           "Erro",
+  //           "Nenhum prato encontrado para a data selecionada.",
+  //           TypeAlert.error,
+  //         );
+  //       }
+  //       return pratosModel;
+  //     } else {
+  //       throw Exception('É necessário fazer login.');
+  //     }
+  //   } catch (e) {
+  //     // Lida com erros gerais
+  //     AlertController.show(
+  //       "Erro",
+  //       e.toString(),
+  //       TypeAlert.error,
+  //     );
+  //     return null;
+  //   }
+  // }
 
   // Método para listar pratos do cardápio por dia 
   Future<PratosModel> listarPratoCardapioDia(int idPrato, String dataCardapio) async {
