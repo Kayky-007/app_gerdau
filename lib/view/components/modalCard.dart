@@ -115,6 +115,16 @@ class _ModalCardState extends State<ModalCard> {
                     visivel = false;
                   });
                   await _fetchPratosData(); // Carrega os dados quando a data é selecionada
+
+                  // Verifica se há pedido para o dia selecionado
+                  if (pratos == null || pratos!.ingredientes == null) {
+                    AlertController.show(
+                      "Pedido não disponível",
+                      "Não há pedidos disponíveis para o dia selecionado.",
+                      TypeAlert.error,
+                    );
+                    Navigator.of(context).pop(); // Fecha o modal
+                  }
                 },
                 calendarStyle: const CalendarStyle(
                   selectedDecoration: BoxDecoration(
@@ -235,7 +245,7 @@ class _ModalCardState extends State<ModalCard> {
 
                     // Realizar o pedido
                     await controllerPedidos.realizarPedido(
-                      pratos!.idPrato.toString(),
+                      pratos!.idPrato.toString() ,
                       dia_API,
                     );
 
