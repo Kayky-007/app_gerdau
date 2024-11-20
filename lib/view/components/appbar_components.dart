@@ -2,47 +2,24 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:background_app_bar/background_app_bar.dart';
 
-class AppbarfotoComponents extends StatelessWidget  {
+class AppbarfotoComponents extends StatelessWidget {
   final String title;
 
   const AppbarfotoComponents({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-    //COMO CHAMAR O APPBAR COMPONENT !!!
-    // Há dois body
-
-    // body: NestedScrollView(
-    //     headerSliverBuilder: (context, innerBoxScrolled) => [
-    //       AppbarfotoComponents(title: 'Cinco Estrelas'),
-    //     ],
-
-        //body: column{children[...]}
-
-    // )
-
-
-
     return SliverAppBar(
       actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: Colors.transparent,
-            foregroundColor: Colors.white,
-            child: const Icon(Icons.person_outline_outlined),
-          ),
-        ),
       ],
-      expandedHeight: 70.0,
+      expandedHeight: 70.0, 
       floating: false,
       pinned: true,
       snap: false,
       elevation: 0.0,
       backgroundColor: Colors.transparent,
       flexibleSpace: BackgroundFlexibleSpaceBar(
+        centerTitle: true, // Centraliza o título
         title: Text(
           title,
           style: TextStyle(
@@ -58,8 +35,7 @@ class AppbarfotoComponents extends StatelessWidget  {
             ],
           ),
         ),
-        centerTitle: false,
-        titlePadding: const EdgeInsets.only(left: 20.0, bottom: 10.0),
+        titlePadding: const EdgeInsets.only(bottom: 10.0), 
         background: ClipRect(
           child: Container(
             decoration: const BoxDecoration(

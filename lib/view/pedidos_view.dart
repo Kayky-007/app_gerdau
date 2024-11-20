@@ -4,6 +4,7 @@ import 'package:login_gerdau/view/components/appbar_components.dart';
 import 'package:login_gerdau/view/components/cardPedidos.dart';
 import 'package:login_gerdau/model/pedidos_model.dart';
 import 'package:intl/intl.dart';
+import 'package:login_gerdau/view/components/drawer_components.dart';
 
 class PedidosView extends StatefulWidget {
   const PedidosView({super.key, this.passback});
@@ -93,6 +94,7 @@ _pedidosFiltrados;
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+        drawer: CustomDrawer(),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxScrolled) => [
           AppbarfotoComponents(title: 'Pedidos'),
@@ -210,7 +212,7 @@ _pedidosFiltrados;
               _filtrarPedidos(false);
             });
           },
-          backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+          backgroundColor: Color.fromARGB(255, 187, 156, 82),
           foregroundColor: Colors.white,
           child: Icon(Icons.restart_alt),
         ),
