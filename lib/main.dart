@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown_alert/dropdown_alert.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:login_gerdau/view/cardapio_view.dart';
+import 'package:login_gerdau/view/inicio_view.dart';
 import 'package:login_gerdau/view/login_view.dart';
-import 'package:login_gerdau/view/painel_view.dart';
 import 'package:login_gerdau/view/pedidos_view.dart';
+import 'package:login_gerdau/view/perfil_view.dart';
 import 'package:page_transition/page_transition.dart';
  
 void main() async {
@@ -57,17 +58,18 @@ class MyApp extends StatelessWidget {
               duration: 2000,
               splash: 'assets/images/logoGRSA_splashscreen.png',
               nextScreen: token != null
-                  ? const PainelView() // Se o token estiver presente, vai para o painel
+                  ? const InicioView() // Se o token estiver presente, vai para o painel
                   : const LoginView(), // Caso contrário, vai para a tela de login
               splashTransition: SplashTransition.fadeTransition,
               pageTransitionType: PageTransitionType.topToBottom,
               splashIconSize: 150,
               backgroundColor: Colors.white,
             ),
-        '/painel': (context) => const PainelView(),
         '/login': (context) => const LoginView(),
         '/cardapio': (context) => const CardapioView(),
         '/pedidos': (context) => const PedidosView(),
+        '/inicio': (context) => const InicioView(),
+        '/perfil': (context) => const PerfilView(),
       },
       initialRoute: '/',
     );

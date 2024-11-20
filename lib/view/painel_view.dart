@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:login_gerdau/view/components/barra_navigacao.dart';
+// import 'package:flutter/material.dart';
+// import 'package:login_gerdau/view/components/barra_navigacao.dart';
 
-class PainelView extends StatefulWidget {
-  const PainelView({super.key});
+// class PainelView extends StatefulWidget {
+//   const PainelView({super.key});
 
-  @override
-  State<PainelView> createState() => _PainelViewState();
-}
+//   @override
+//   State<PainelView> createState() => _PainelViewState();
+// }
 
-class _PainelViewState extends State<PainelView> {
-  @override
-  Widget build(BuildContext context) {
-    return BarraNavigacao();
+// class _PainelViewState extends State<PainelView> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return BarraNavigacao();
    
-  }
-}
+//   }
+// }

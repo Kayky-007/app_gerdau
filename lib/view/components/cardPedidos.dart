@@ -40,7 +40,7 @@ class CardPedidos extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: Card(
-          color: Colors.black,
+          color: Color.fromARGB(255, 187, 156, 82),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
@@ -51,15 +51,7 @@ class CardPedidos extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    imagemPath,
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                
                 SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -71,14 +63,14 @@ class CardPedidos extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.amber,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(height: 4),
                       Text(
                         'Descrição: $descricao',
                         style: TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
                           fontSize: 13,
                         ),
                       ),
@@ -98,7 +90,7 @@ class CardPedidos extends StatelessWidget {
                           Text(
                             '$notaPedido/5', // Exibe a avaliação
                             style: TextStyle(
-                              color: Colors.amber,
+                              color: Colors.white,
                               fontSize: 14,
                             ),
                           ),
@@ -137,8 +129,8 @@ class CardPedidos extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.redAccent,
+                    foregroundColor: const Color.fromARGB(188, 255, 255, 255),
+                    backgroundColor: Color.fromRGBO(121, 9, 9, 1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -180,7 +172,7 @@ class CardPedidos extends StatelessWidget {
               children: [
                 Icon(
                   Icons.info_outline,
-                  color: Color.fromRGBO(255, 204, 0, 1),
+                  color: Color.fromARGB(255, 187, 156, 82),
                 ),
                 SizedBox(width: 8),
                 Text(
@@ -200,7 +192,7 @@ class CardPedidos extends StatelessWidget {
                   'Ingredientes:',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(255, 204, 0, 1),
+                    color: Color.fromARGB(255, 187, 156, 82),
                   ),
                 ),
                 SizedBox(height: 8),
@@ -217,7 +209,7 @@ class CardPedidos extends StatelessWidget {
                   'Informações adicionais',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(255, 204, 0, 1),
+                    color: Color.fromARGB(255, 187, 156, 82),
                   ),
                 ),
                 SizedBox(height: 8),
@@ -266,7 +258,7 @@ class CardPedidos extends StatelessWidget {
                       _showRatingDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(255, 204, 0, 1), // Dourado
+                      backgroundColor: Color.fromARGB(255, 187, 156, 82), 
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -277,7 +269,7 @@ class CardPedidos extends StatelessWidget {
                     ),
                     child: Text(
                       'Avaliar',
-                      style: TextStyle(color: Colors.black, fontSize: 16),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ],
@@ -306,7 +298,7 @@ class CardPedidos extends StatelessWidget {
             children: [
               Icon(
                 Icons.star_border,
-                color: Color.fromRGBO(255, 204, 0, 1),
+                color: Color.fromARGB(255, 187, 156, 82),
               ),
               SizedBox(width: 8),
               Text(
@@ -331,7 +323,7 @@ class CardPedidos extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Icon(
                     Icons.star,
-                    color: Colors.amber,
+                    color: Color.fromARGB(255, 187, 156, 82),
                   );
                 },
                 onRatingUpdate: (newRating) {
@@ -357,13 +349,13 @@ class CardPedidos extends StatelessWidget {
                 }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(255, 204, 0, 1),
+                backgroundColor: Color.fromARGB(255, 187, 156, 82),
                 padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
               ),
               child: Center(
                 child: Text(
                   'Enviar Avaliação',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
             ),

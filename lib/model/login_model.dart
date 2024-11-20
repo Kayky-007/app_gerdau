@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:login_gerdau/config/config_api.dart';
 
 class LoginModel {
   String? chapa_usuario;
@@ -29,7 +30,7 @@ class LoginModel {
 
       // Realizando a requisição POST com o formato de formulário
       final response = await http.post(
-        Uri.parse('http://192.168.0.72/api-gerdau/endpoints/loginPorChapa.php'),
+        Uri.parse('${Config.apiBaseUrl}/loginPorChapa.php'),
         body: body, // Corpo no formato x-www-form-urlencoded
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded', // Cabeçalho indicando que o corpo é 'x-www-form-urlencoded'

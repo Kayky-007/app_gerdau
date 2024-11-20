@@ -24,7 +24,7 @@ class _LoginViewState extends State<LoginView> {
 
       if (sucesso) {
         // Se o login for bem-sucedido, redireciona para a tela inicial
-        Navigator.pushReplacementNamed(context, '/painel');
+        Navigator.pushReplacementNamed(context, '/inicio');
       } else {
         // Caso o login falhe
         ScaffoldMessenger.of(context).showSnackBar(

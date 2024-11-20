@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_gerdau/controller/login_controller.dart';
 import 'package:login_gerdau/view/components/appbar_components.dart';
+import 'package:login_gerdau/view/components/drawer_components.dart';
 import 'package:login_gerdau/view/components/espacamento_h.dart';
 import 'package:login_gerdau/view/login_view.dart';
 
@@ -56,6 +57,7 @@ class _PerfilViewState extends State<PerfilView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxScrolled) => [
           AppbarfotoComponents(title: 'Perfil'),
@@ -69,6 +71,7 @@ class _PerfilViewState extends State<PerfilView> {
                 child: Column(
                   children: [
                     Card(
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
