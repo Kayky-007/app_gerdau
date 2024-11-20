@@ -1,3 +1,3 @@
 class Config {
-  static const String apiBaseUrl = 'http://10.0.0.100/api-gerdau-oficial/endpoints';
+  static const String apiBaseUrl = 'http://192.168.0.72/api-gerdau/endpoints';
 }

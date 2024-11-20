@@ -58,7 +58,8 @@ class _ModalCardState extends State<ModalCard> {
   }
 
   Future<void> _fetchPratosData() async {
-    PratosModel? data = await controller.obterDadosPratoPorDia(dia_API, idPrato);
+    PratosModel? data =
+        await controller.obterDadosPratoPorDia(dia_API, idPrato);
     setState(() {
       pratos = data;
     });
@@ -85,7 +86,7 @@ class _ModalCardState extends State<ModalCard> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-                  "Confirmar Pedido", //\n (${DateFormat('dd/MM/yyyy').format(_selectedDay)}),
+              "Confirmar Pedido", //\n (${DateFormat('dd/MM/yyyy').format(_selectedDay)}),
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -157,7 +158,7 @@ class _ModalCardState extends State<ModalCard> {
                   style: TextStyle(fontSize: 18, color: Colors.black)),
             ),
             // Agora os acompanhamentos aparecem somente após a data ser selecionada
-            if (pratos != null && pratos!.ingredientes != null) 
+            if (pratos != null && pratos!.ingredientes != null)
               ListTile(
                 title: Text(
                   'Acompanhamento:',
@@ -178,7 +179,7 @@ class _ModalCardState extends State<ModalCard> {
                       .toList(),
                 ),
               )
-            else 
+            else
               ListTile(
                 title: Text(
                   'Acompanhamento:',
@@ -204,8 +205,8 @@ class _ModalCardState extends State<ModalCard> {
                         borderRadius: BorderRadius.circular(15),
                         side: BorderSide(color: Colors.redAccent),
                       ),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 12),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                     ),
                     child: Text("Cancelar"),
                     onPressed: () {
@@ -222,6 +223,16 @@ class _ModalCardState extends State<ModalCard> {
                   ),
                   child: Text("Confirmar"),
                   onPressed: () async {
+                    if (_selectedDay.isBefore(DateTime.now())) {
+                      // Se a data selecionada for anterior ao dia atual, mostrar um alerta
+                      AlertController.show(
+                        "Data Inválida",
+                        "Não é possível realizar um pedido para uma data anterior ao dia de hoje.",
+                        TypeAlert.error,
+                      );
+                      return; // Impede que o pedido seja realizado
+                    }
+
                     // Realizar o pedido
                     await controllerPedidos.realizarPedido(
                       pratos!.idPrato.toString(),
