@@ -135,7 +135,7 @@ class CardPedidos extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 15, 0),
                       child: Row(
