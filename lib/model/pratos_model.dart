@@ -71,8 +71,8 @@ class PratosModel {
     // Realiza a requisição GET com o token no cabeçalho
     final response = await http.get(url, headers: {'authorization': token});
 
-    print("Url enviada para API: $url");
-    print("Resposta da API: ${response.body}");
+    //print("Url enviada para API: $url");
+    //print("Resposta da API: ${response.body}");
 
     // Verifica o status da resposta HTTP
     if (response.statusCode == 200) {
@@ -87,7 +87,7 @@ class PratosModel {
           return PratosModel.fromJson(dados[0]);
         } else {
           // Se não houver dados, exibe a mensagem de erro
-          print("Sem pratos cadastrados para este dia.");
+          //print("Sem pratos cadastrados para este dia.");
           AlertController.show(
             "Erro",
             "Não há pratos cadastrados para este dia.",
@@ -97,7 +97,7 @@ class PratosModel {
         }
       } else {
         // Caso o JSON não tenha a chave 'dados' ou ela não seja uma lista
-        print("Erro na estrutura dos dados retornados pela API.");
+        //print("Erro na estrutura dos dados retornados pela API.");
         AlertController.show(
           "Erro",
           "Erro ao processar os dados retornados.",
@@ -107,7 +107,7 @@ class PratosModel {
       }
     } else {
       // Se a requisição falhar (status code diferente de 200)
-      print("Falha na requisição: ${response.statusCode}");
+      //print("Falha na requisição: ${response.statusCode}");
       throw Exception('Falha ao realizar requisição');
     }
   }
@@ -136,7 +136,7 @@ class PratosModel {
           // Retorna o primeiro item como PratosModel
           return PratosModel.fromJson(dados[0]);
         } else {
-          print(mensagem);
+          //print(mensagem);
           return null; // Retorna null se não há pratos
         }
       } else {
@@ -170,9 +170,9 @@ class PratosModel {
         'data_cardapio': dataCardapio,
       },
     );
-    print(dataCardapio);
-    print(idPrato);
-    print('Resposta da API: ${response.body}');
+    //print(dataCardapio);
+    //print(idPrato);
+    //print('Resposta da API: ${response.body}');
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> decodedJson = jsonDecode(response.body);

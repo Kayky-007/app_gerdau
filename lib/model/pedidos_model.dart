@@ -148,7 +148,7 @@ class PedidosModel {
        // Converte o body para o formato de x-www-form-urlencoded
     final encodedBody = body.entries.map((e) => '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}').join('&');
       final response = await http.post(url, headers: headers, body: encodedBody);
-      print(response.body);
+      //print(response.body);
       if (response.statusCode == 200) {
         final responseData = json.decode(response.body);
         if (responseData['dados']['sucesso']) {
