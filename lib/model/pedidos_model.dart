@@ -36,7 +36,7 @@ class PedidosModel {
 
   // Método estático para buscar os pedidos do usuário
   static Future<List<PedidosModel>> obterPedidosDia(String token) async {
-    final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/listarPedidosPorUsuario.php');
+    final url = Uri.parse('http://192.168.0.72/api-gerdau/endpoints/listarPedidosPorUsuario.php');
     final response = await http.get(url, headers: {'authorization': token});
 
     if (response.statusCode == 200) {
@@ -56,7 +56,7 @@ class PedidosModel {
   // Função para cancelar o pedido
   static Future<bool> cancelarPedido(int idPedido, String token) async {
     try {
-      final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/excluirPedidoUsuario.php');
+      final url = Uri.parse('http://192.168.0.72/api-gerdau/endpoints/excluirPedidoUsuario.php');
       final response = await http.post(
         url,
         headers: {'authorization': token},
@@ -94,7 +94,7 @@ class PedidosModel {
 // Função para enviar a avaliação do pedido
   static Future<bool> enviarAvaliacao(int idPedido, int notaPedido, String token) async {
     try {
-      final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/avaliarPedido.php');
+      final url = Uri.parse('http://192.168.0.72/api-gerdau/endpoints/avaliarPedido.php');
       final response = await http.post(
         url,
         headers: {'authorization': token},
@@ -132,7 +132,7 @@ class PedidosModel {
   }
   // Função para realizar pedido
  static Future realizarPedido(String idPrato, String token, String diaAPI) async {
-    final url = Uri.parse('http://10.141.46.20/gerdau-api/api-gerdau/endpoints/realizarPedido.php');
+    final url = Uri.parse('http://192.168.0.72/api-gerdau/endpoints/realizarPedido.php');
     final headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': token,
