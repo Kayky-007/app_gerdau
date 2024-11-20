@@ -59,203 +59,212 @@ class _CardapioViewState extends State<CardapioView> {
                 }),
               ),
               const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        ModalCard.showModalCard(
-                            nomePrato: 'Dia a Dia',
-                            context: context,
-                            idPrato: 1 // esse valor para idPrato
-                            );
-                      },
-                      child: Card(
-                        elevation: 5,
-                        color: Color.fromARGB(255, 187, 156, 82),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Dia a Dia',
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset('assets/images/cardFoto.png',
-                                          width: 120),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          ModalCard.showModalCard(
+                              nomePrato: 'Dia a Dia',
+                              context: context,
+                              idPrato: 1 // esse valor para idPrato
+                              );
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Color.fromARGB(255, 187, 156, 82),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Dia a Dia',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset('assets/images/cardFoto.png',
+                                            width: 120),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 5),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        ModalCard.showModalCard(
-                            context: context,
-                            nomePrato: 'Clássico',
-                            idPrato: 3 // esse valor para idPrato
-                            );
-                      },
-                      child: Card(
-                        elevation: 5,
-                        color: Color.fromARGB(255, 187, 156, 82),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Clássico',
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                          'assets/images/cardFoto.png',
-                                          width: 120),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+                    SizedBox(width: 5),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          ModalCard.showModalCard(
+                              context: context,
+                              nomePrato: 'Clássico',
+                              idPrato: 3 // esse valor para idPrato
+                              );
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Color.fromARGB(255, 187, 156, 82),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Clássico',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/cardFoto.png',
+                                            width: 120),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              Divider(height: 30, thickness: 2),
-              Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        ModalCard.showModalCard(
-                            context: context,
-                            nomePrato: 'Especiale',
-                            idPrato: 2 // esse valor para idPrato
-                            );
-                      },
-                      child: Card(
-                        elevation: 5,
-                        color: Color.fromARGB(255, 187, 156, 82),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Especiale',
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                          'assets/images/cardFoto.png',
-                                          width: 120),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: Divider(height: 30, thickness: 2),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          ModalCard.showModalCard(
+                              context: context,
+                              nomePrato: 'Especiale',
+                              idPrato: 2 // esse valor para idPrato
+                              );
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Color.fromARGB(255, 187, 156, 82),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Especiale',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/cardFoto.png',
+                                            width: 120),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(width: 5), // Espaço entre os cards
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        ModalCard.showModalCard(
-                            context: context,
-                            nomePrato: 'Natural',
-                            idPrato: 4 // esse valor para idPrato
-                            );
-                      },
-                      child: Card(
-                        elevation: 5,
-                        color: Color.fromARGB(255, 187, 156, 82),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Column(
-                                children: [
-                                  const Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Natural',
-                                        style: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                          'assets/images/cardFoto.png',
-                                          width: 120),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+                    SizedBox(width: 5), // Espaço entre os cards
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          ModalCard.showModalCard(
+                              context: context,
+                              nomePrato: 'Natural',
+                              idPrato: 4 // esse valor para idPrato
+                              );
+                        },
+                        child: Card(
+                          elevation: 5,
+                          color: Color.fromARGB(255, 187, 156, 82),
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Natural',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/cardFoto.png',
+                                            width: 120),
+                                      ],
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
