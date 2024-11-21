@@ -42,6 +42,7 @@ class _ModalCardState extends State<ModalCard> {
   late final idPrato;
   late String dia_marcado;
   late String dia_API;
+  late String dia_agora = DateFormat('dd/MM/yyyy').format(DateTime.now());
   bool visivel = false;
   PratosModel? pratos; // Variável para armazenar os dados dos pratos
   PedidosController controllerPedidos = PedidosController();
@@ -86,7 +87,7 @@ class _ModalCardState extends State<ModalCard> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Confirmar Pedido", //\n (${DateFormat('dd/MM/yyyy').format(_selectedDay)}),
+              "Confirmar Pedido",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -94,6 +95,21 @@ class _ModalCardState extends State<ModalCard> {
               ),
               textAlign: TextAlign.center,
             ),
+            Text(
+              dia_marcado == dia_agora
+                  ? 'Hoje: $dia_agora'
+                  : 'Selecionado: $dia_marcado',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize:
+                    dia_marcado == dia_agora ? 20 : 20, 
+                color: dia_marcado == dia_agora
+                    ? Colors.green 
+                    : Colors.blue, 
+              ),
+              textAlign: TextAlign.center,
+            ),
+
             SizedBox(height: 15),
             ClipRRect(
               borderRadius: BorderRadius.circular(15),
@@ -108,6 +124,7 @@ class _ModalCardState extends State<ModalCard> {
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                 onDaySelected: (selectedDay, focusedDay) async {
                   setState(() {
+                    dia_agora = dia_marcado;
                     _selectedDay = selectedDay;
                     _focusedDay = focusedDay;
                     dia_marcado = DateFormat('dd/MM/yyyy').format(selectedDay);
@@ -245,7 +262,7 @@ class _ModalCardState extends State<ModalCard> {
 
                     // Realizar o pedido
                     await controllerPedidos.realizarPedido(
-                      pratos!.idPrato.toString() ,
+                      pratos!.idPrato.toString(),
                       dia_API,
                     );
 
