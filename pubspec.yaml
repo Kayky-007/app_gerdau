@@ -101,6 +101,8 @@ flutter:
   - assets/images/cardFoto.png
   - assets/images/imagem_fundo.jpg
   - assets/images/logo_gr_card.png
+  - assets/images/fotocarrossel1.png
+  - assets/images/fotocarrossel2.png
   
 
   # An image asset can refer to one or more resolution-specific "variants", see
