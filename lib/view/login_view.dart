@@ -61,7 +61,7 @@ class _LoginViewState extends State<LoginView> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(
-                  'assets/images/logo_fundo3.jpg'), // Substitua pelo caminho da sua imagem de fundo
+                  'assets/images/imagem_fundo.jpg'), // Substitua pelo caminho da sua imagem de fundo
               fit: BoxFit.cover, // Ajusta para cobrir toda a tela
             ),
           ),
@@ -124,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                                 : const Text('Entrar'),
                             style: ElevatedButton.styleFrom(
                               foregroundColor: Colors.white,
-                              backgroundColor: Color.fromRGBO(129, 108, 12, 1),
+                              backgroundColor: Color.fromARGB(255, 187, 156, 82),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),

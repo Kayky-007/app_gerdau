@@ -35,8 +35,8 @@ class _CardapioViewState extends State<CardapioView> {
                     });
                   },
                   children: [
-                    Image.asset('assets/images/gd1.jpg', fit: BoxFit.cover),
-                    Image.asset('assets/images/ReceitAço.jpg', fit: BoxFit.cover),
+                    Image.asset('assets/images/fotocarrossel2.png', fit: BoxFit.cover),
+                    Image.asset('assets/images/fotocarrossel1.png', fit: BoxFit.cover),
                   ],
                 ),
               ),
@@ -82,25 +82,26 @@ class _CardapioViewState extends State<CardapioView> {
                               children: [
                                 Column(
                                   children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset('assets/images/cardFoto.png',
+                                            width: 90),
+                                      ],
+                                    ),
                                     const Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Dia a Dia',
+                                          'DIA A DIA',
                                           style: TextStyle(
-                                              fontSize: 22,
+                                              fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset('assets/images/cardFoto.png',
-                                            width: 120),
-                                      ],
-                                    ),
+                                    
                                   ],
                                 )
                               ],
@@ -129,24 +130,24 @@ class _CardapioViewState extends State<CardapioView> {
                               children: [
                                 Column(
                                   children: [
-                                    const Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Clássico',
-                                          style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                             'assets/images/cardFoto.png',
-                                            width: 120),
+                                            width: 90),
+                                      ],
+                                    ),
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'CLÁSSICO',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -187,24 +188,24 @@ class _CardapioViewState extends State<CardapioView> {
                               children: [
                                 Column(
                                   children: [
-                                    const Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Especiale',
-                                          style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                             'assets/images/cardFoto.png',
-                                            width: 120),
+                                            width: 90),
+                                      ],
+                                    ),
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'SPECIALE',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ],
                                     ),
                                   ],
@@ -235,24 +236,24 @@ class _CardapioViewState extends State<CardapioView> {
                               children: [
                                 Column(
                                   children: [
-                                    const Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Natural',
-                                          style: TextStyle(
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ],
-                                    ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                             'assets/images/cardFoto.png',
-                                            width: 120),
+                                            width: 90),
+                                      ],
+                                    ),
+                                    const Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'NATURAL',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
                                       ],
                                     ),
                                   ],
