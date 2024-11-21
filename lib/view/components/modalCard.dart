@@ -49,22 +49,30 @@ class _ModalCardState extends State<ModalCard> {
   PratosController controller = PratosController();
 
   @override
-  void initState() {
-    super.initState();
-    _focusedDay = DateTime.now();
-    _selectedDay = DateTime.now();
-    dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
-    dia_API = dia_marcado;
-    idPrato = widget.idPrato;
-  }
+void initState() {
+  super.initState();
+  _focusedDay = DateTime.now();
+  _selectedDay = DateTime.now();
+  dia_marcado = DateFormat('dd/MM/yyyy').format(_selectedDay);
+  dia_API = dia_marcado;
+  idPrato = widget.idPrato;
 
-  Future<void> _fetchPratosData() async {
-    PratosModel? data =
-        await controller.obterDadosPratoPorDia(dia_API, idPrato);
+  // Chama a função para buscar os dados automaticamente
+  _fetchPratosData();
+}
+
+Future<void> _fetchPratosData() async {
+  try {
+    PratosModel? data = await controller.obterDadosPratoPorDia(dia_API, idPrato);
     setState(() {
       pratos = data;
     });
+  } catch (e) {
+    // Trate erros se necessário
+    print("Erro ao carregar dados do prato: $e");
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
