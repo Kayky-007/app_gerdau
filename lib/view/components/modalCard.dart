@@ -233,7 +233,7 @@ class _ModalCardState extends State<ModalCard> {
                   ),
                   child: Text("Confirmar"),
                   onPressed: () async {
-                    if (_selectedDay.isBefore(DateTime.now())) {
+                    if (_selectedDay.isBefore(DateTime.now().subtract(Duration(days: 1)))) {
                       // Se a data selecionada for anterior ao dia atual, mostrar um alerta
                       AlertController.show(
                         "Data Inválida",
