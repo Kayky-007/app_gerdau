@@ -179,7 +179,7 @@ class CardPedidos extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            backgroundColor: Colors.grey[900],
+            backgroundColor: const Color.fromARGB(255, 255, 255, 255),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -193,7 +193,7 @@ class CardPedidos extends StatelessWidget {
                 Text(
                   'Detalhes do Pedido',
                   style: TextStyle(
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 0, 0, 0),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -214,7 +214,7 @@ class CardPedidos extends StatelessWidget {
                 ...listaIngredientes.map((ingrediente) {
                   return Text(
                     '- ${ingrediente.trim()}',
-                    style: TextStyle(color: Colors.white70),
+                    style: TextStyle(color: const Color.fromARGB(179, 0, 0, 0)),
                   );
                 }).toList(),
                 SizedBox(height: 16),
@@ -229,15 +229,15 @@ class CardPedidos extends StatelessWidget {
                 SizedBox(height: 8),
                 Text(
                   'Descrição: $descricao',
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle(color: const Color.fromARGB(179, 0, 0, 0)),
                 ),
                 Text(
                   'Data do Agendamento: $dataAgendamento',
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle(color: const Color.fromARGB(179, 0, 0, 0)),
                 ),
                 Text(
                   'Data do Pedido: $dataPedido',
-                  style: TextStyle(color: Colors.white70),
+                  style: TextStyle(color: const Color.fromARGB(179, 0, 0, 0)),
                 ),
               ],
             ),
@@ -302,7 +302,7 @@ class CardPedidos extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.grey[900],
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
@@ -316,7 +316,7 @@ class CardPedidos extends StatelessWidget {
               Text(
                 'Avalie o Pedido',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: const Color.fromARGB(255, 0, 0, 0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -356,7 +356,7 @@ class CardPedidos extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromARGB(255, 187, 156, 82),
               ),
-              child: Text('Salvar'),
+              child: Text('Salvar', style: TextStyle(color: Colors.white)),
             ),
           ],
         );
