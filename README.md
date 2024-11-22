@@ -1,16 +1,23 @@
-# login_gerdau
+App Gerdau
 
-A new Flutter project.
+Um aplicativo Flutter para gerenciamento da empresa Gerdau, incluindo funcionalidades de autenticação e acesso seguro.
 
-## Getting Started
+Descrição
 
-This project is a starting point for a Flutter application.
+Este projeto foi desenvolvido utilizando o framework Flutter e serve como base para a construção de um sistema de gerenciamento que centraliza processos e informações relacionadas à empresa Gerdau.
 
-A few resources to get you started if this is your first Flutter project:
+Funcionalidades
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Sistema de autenticação com login e senha.
+Interface amigável e responsiva.
+Base para integração com outros módulos de gerenciamento.
+Recursos Úteis
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Se você é iniciante no Flutter, confira os seguintes recursos para começar:
+
+Lab: Crie seu primeiro aplicativo Flutter
+Cookbook: Exemplos úteis em Flutter
+Documentação Flutter
+
+Para mais informações sobre desenvolvimento Flutter, consulte a documentação oficial. Ela oferece tutoriais, exemplos, orientação para desenvolvimento mobile e uma referência completa da API.
+
